@@ -3,7 +3,7 @@
 
 #include <vector>
 
-namespace Nikola::SyntaxAnalysis
+namespace Nikola::SyntaxAnalysis::SyntaxTree
 {
     enum class SyntaxNodeType
     {
