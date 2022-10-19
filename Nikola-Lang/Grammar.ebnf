@@ -1,0 +1,220 @@
+####################################################################################################
+# Tokens 
+INTEGER_LITERAL ::= ([0-9]{1,2}_)?[0-9]+
+REAL_LITERAL ::= [0-9]*\.[0-9]+([eE][+-][0-9]+)?
+COMPLEX_LITERAL ::= (INTEGER_LITERAL | COMPLEX_LITERAL)[iIjJ]
+
+C_ESCAPE_SEQUENCE ::= \r|\t|\n|\a|\b|\f|\v|\'
+S_ESCAPE_SEQUENCE ::= \r|\t|\n|\a|\b|\f|\v|\"
+CHAR_LITERAL ::= '(C_ESCAPE_SEQUENCE | ASCII_CHAR)'
+SEQUENCE_LITERAL ::= "(S_ESCAPE_SEQUENCE | ASCII_CHAR)*"
+
+IDENTIFIER ::= [a-zA-Z_][a-zA-Z0-9_-]*
+
+# Operators
+"+" "-" "*" "/" "//" "^" "%=" "+=" "-=" "*=" "/=" "//=" "^=" "%"
+"+<" "-<" "*<" "/<" "//<" "^<" "%<" "+<=" "-<=" "*<=" "/<=" "//<=" "^<=" "%<="
+"&&" "||" "==" "!=" "<" "<=" ">" ">=" "<=>" "!"
+"&" "|" "^^" "~" "<<" ">>" "&=" "|=" "^^=" "~=" "<<=" ">>="
+"=" "<-" "->" "::" "++" "--"
+
+# Punctuators
+"[" "]" "," "{" "}" ":" "(" ")" ";" "..."
+
+# Key words
+"as" "bool" "break" "catch" "char" "class" "compeval" "complex" "const" "do" "dynamic" "enum" "else" "else if" "false" "if" "is" "int8_t" "int16_t" "int32_t" "int64_t" 
+"let" "match" "new" "noop" "nothrow" "private" "public" "pure" "real" "return" "sizeof" "static" "throw" "true" "type" "typedef" "when" "where" "while"
+
+##############"######################################################################################
+### Begin Grammar
+####################################################################################################
+### Expression - anything that has a type and a value
+expr ::=
+    ### Primary expressions
+    | INTEGER_LITERAL 
+    | REAL_LITERAL 
+    | COMPLEX_LITERAL 
+    | CHAR_LITERAL 
+    | STRING_LITERAL
+    | IDENTIFIER 
+    | "(" expr ")"
+    | "|" expr "|"
+    ### Arithmetic expressions
+    | expr + expr
+    | expr - expr
+    | expr * expr
+    | expr / expr
+    | expr // expr
+    | expr ^ expr
+    | expr % expr
+    | expr "!" 
+    # Arithmetic-assignment expressions
+    | expr += expr
+    | expr -= expr
+    | expr *= expr
+    | expr /= expr
+    | expr //= expr
+    | expr ^= expr
+    | expr %= expr
+    ### Element-wise arithmetic expressions 
+    | expr +< expr 
+    | expr -< expr 
+    | expr *< expr 
+    | expr /< expr 
+    | expr //< expr 
+    | expr ^< expr 
+    | expr %< expr 
+    ### Element-wise arithmetic-assignent expressions
+    | expr +<= expr 
+    | expr -<= expr 
+    | expr *<= expr 
+    | expr /<= expr 
+    | expr //<= expr 
+    | expr ^<= expr 
+    | expr %<= expr 
+    ### Logical expressions 
+    | expr && expr
+    | expr || expr 
+    | ! expr 
+    | expr == expr 
+    | expr != expr 
+    | expr < expr 
+    | expr <= expr 
+    | expr > expr 
+    | expr >= expr 
+    | expr <=> expr 
+    ### Bitwise expressions 
+    | expr & expr 
+    | expr | expr # Also used to pipe functions together
+    | expr ^^ expr 
+    | ~ expr 
+    | expr << expr 
+    | expr >> expr 
+    | expr &= expr 
+    | expr |= expr 
+    | expr ^^= expr 
+    | expr ~= expr 
+    | expr <<= expr 
+    | expr >>= expr 
+    ### Misc. operators 
+    | expr "=" expr # Assignment operator
+    | expr "<-" expr # Move operator (C++ equiv. expr = std::move(expr))
+    | "&" expr # View creation 
+    | "++" expr 
+    | expr "++"
+    | "--" expr 
+    | expr "--"
+    ### Initialization literals
+    # Vector literal
+    | "<" expr {"," expr} ">"
+    # Matrix literal 
+    | "[" { "[" expr {"," expr} "]" } "]"
+    # Initializer literal
+    | "{" expr {"," expr} "}"
+    # Set builder expression 
+    | "{" expression "|" expression "}" # Equivalent to matheatical set-builder notation 
+    ### Array indexing
+    | expr "[" array_slice {, array_slice} "]"
+    ### Initialization expression 
+    | "new" ["dynamic"] IDENTIFIER "{" [function_argument_list] "}"
+    | "new" ["dynamic"] IDENTIFIER {"[" INTEGER_LITERAL "]"} # Dynamic array
+    ### Function call 
+    | expr "(" function_argument_list ")"
+    ### Pattern maching/casting aids 
+    | expr "is" expr 
+    | "as" template-instantiation "(" expr ")"
+    ### Querying expressions 
+    | "type" "(" expr ")"
+    | "sizeof" "(" expr ")"
+
+### Array indexing and slicing
+array-slice ::= array-slice-elt [":" array-slice-elt] [":" array-slice-elt]
+array-slice_elt ::= (INTEGER_LITERAL | IDENTIFIER)
+### Function call
+function-argment-list ::= [IDENTIFIER "="] expression ["->"] {"," [IDENTIFIER "="] expression ["->"]} # "->" = std::move(expr) in C++
+
+####################################################################################################
+### Statement
+## Overview
+statement ::= 
+    | compound-statement 
+    | null-statement 
+    | conditional-statement 
+    | matching-statement 
+    | loop-statement 
+    | exception-statement 
+    | jump-statement 
+    | expresison-statement
+## Detail
+compound-statement ::= "{" {statement} "}"
+
+null-statement ::= "noop" ";"
+
+conditional-statement ::= if-statement {else-if-statement} [else-statement]
+if-statement ::= "if" "(" expr ")" compound-statement 
+else-if-statement ::= "else if" "(" expr ")" compound-statement 
+else-statement ::= "else" compound-statement
+
+loop-statement ::= for-loop | ranged-for-loop | while-loop | do-while-loop
+for-loop ::= "for" "(" [expression] ";" [expression] ";" [expression] ")" compound-statement
+ranged-for-loop ::= "for" "(" variable-declaration "in" [expression] ")"
+while-loop ::= "while" "(" expression ")" compound-statement
+do-while-loop ::= "do" compound-statement "while" "(" expression ")" ";"
+
+matching-statement ::=  "match" "(" expr ")" "{" {match-clause} [else-statement] "}"
+match-clause ::= "when" expr "=>" statement 
+
+exception-statement ::= "try" compound-statement catch-statement {catch-statement}
+catch-statement ::= "catch" "(" expr ")" compound-statement
+
+jump-statement ::= ("return" | "throw") [expr | ("break" | "continue")
+
+expression-statement ::= expr ";"
+####################################################################################################
+### Declaration
+declaration ::=
+    | class-declaration
+    | function-declaration 
+    | variable-declaration
+    | typedef-declaration 
+####################################################################################################
+### Class declaration 
+class-declaration ::= "let" "class" IDENTIFIER "="" "{" ... "}"
+####################################################################################################
+### Function Declaration
+function-declaration ::= function-interface (";" | function-definition)
+function-interface ::= "let" IDENTIFIER [function-modifiers] "(" [function-parameter-declaration-list] ")" [return-types] [template-declaration]
+function-definition ::= "=" statement
+function-modifiers ::= ["static"] ["compeval"] ["pure" | "nothrow"] 
+function-parameter-declaration-list ::= function-parameter-declaration {"," function-parameter-declaration}
+function-parameter-declaration ::=  IDENTIFIER [":" [type | "&" | "*"] ["..."]]
+return-types ::= "->" type {, type}
+####################################################################################################
+### Variable Declaration 
+variable-declaration ::= "let" basic-variable [":" type] ["=" expression]
+basic-variable ::= IDENTIFIER | "{" IDENTIFIER {"," IDENTIFIER} "}" # Structured binding
+type ::= 
+      basic-type 
+    | type ("const" | "[" "]" | "&" | "*")
+basic-type ::= IDENTIFIER [template-instantiation]
+####################################################################################################
+### Typedef Declaration
+typedef-declaration ::= let "typedef" IDENTIFIER ":" template-declaration "=" [typedef-unit]
+typedef-unit = IDENTIFIER "is" IDENTIFIER | 
+####################################################################################################
+### Top Level
+Nikola ::= {declaration}
+####################################################################################################
+### Examples
+let static compeval f(x) = x^2 + y^2;
+
+# Valid types 
+let i : int;
+let i : int const; 
+let i : int const [];
+let i : int [] const;
+let i : int&;
+let i : int const&;
+let i : int & const; 
+
+
