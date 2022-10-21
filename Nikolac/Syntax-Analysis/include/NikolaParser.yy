@@ -76,6 +76,18 @@ nikola: statements;
 statements: statement statements 
 | %empty
 ;
+
+type: ":" type_core;
+type_core: 
+variable_declaration:
+    "let" IDENTIFIER type "=" expression ";" 
+    | "let" IDENTIFIER "=" expression ";" 
+    | "let" IDENTIFIER type 
+    ;
+declaration: 
+    variable_declaration
+    ;
+
 compound_statement: "{" statements "}" ;
 if_statement: "if" "(" expression ")" compound_statement ;
 else_if_statement: "else if" "(" expression ")" compound_statement ;
