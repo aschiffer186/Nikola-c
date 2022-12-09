@@ -59,7 +59,7 @@ true false this nptr
 # General 
 let const compeval 
 # Function 
-pure static nothrow in inout out operator delete 
+pure static nothrow in inout out move operator delete 
 # Class 
 class public protected private enum constructor destructor default
 # Type Alias 

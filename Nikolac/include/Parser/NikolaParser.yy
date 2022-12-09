@@ -44,6 +44,31 @@
 // Miscellaneous Operators 
 %token ASSIGN "=" LEFT_ARROW "<-" PLUS_PLUS "++" MINUS_MINUS "--" ELLIPSIS "..." COLON_COLON "::" DOT "." QUESTION "?" ;
 
+//Keywords 
+//Built-in-types 
+%token INT8_T "int8_t" INT16_T "int16_t" INT32_T "int32_t" INT64_T "int64_t" INT "int" REAL32_T "real32_t" REAL64_T "real64_t" REAL "real" BOOL "bool" ;
+%token CHAR "char" MOD "mod" VOID "void" ;
+//Literals 
+%token TRUE "true" FALSE "false" THIS "this" NPTR "nptr" ;
+//Declarations 
+//General 
+%token LET "let" CONST "const" COMPEVAL "compeval"
+//Function
+%token PURE "pure" STATIC "static" NOTHROW "nothrow" IN "in" INOUT "inout" OUT "out" MOVE "move" OPERATOR "operator" DELETE "delete" ;
+//Class 
+%token CLASS "class" PUBLIC "public" PROTECTED "protected" PRIVATE "private" ENUM "enum" CONSTRUCTOR "constructor" DESTRUCTOR "destructor" ;
+%token DEFAULT "default" ;
+//Type-alias 
+%token DEFINE "define" ;
+//Control Flow
+%token IF "if" ELSE "else" ELSE_IF "else if" FOR "for" DO "do" WHILE "while" TRY "try" CATCH "catch" THROW "throw" BREAK "break" RETURN "return" ;
+%token CONTINUE "continue" MATCH "match" WHEN "when" ;
+//Generic Programming 
+%define TYPESE "typeset" TEMPLATE "template" WHERE "where" ;
+//Modules 
+%token MODULE "module" NAMESPACE "namespace" IMPORT "import" FROM "from" AS "as" WITH "with" ;
+//Expressions 
+%token IS "is" SIZEOF "sizeof" TYPEOF "typeof" STATIC_ASSERT "static_assert" ASSERT "assert" NEW "new" DYNAMIC "dynamic" ;
 %%
 %start nikola;
 nikola: "&" ;
