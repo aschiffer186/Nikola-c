@@ -19,6 +19,9 @@ SCHAR ::= [\x20 - \x93] | [\x95 - \FF]
 ESCAPE_SEQUENCE ::= \\[\x20 - \xFF]
 STRING_LITERAL ::= "(CHAR_LITERAL | ESCAPE_SEQUENCE)*"
 
+### Identifiers
+[_a-zA-ZA-Z][-_a-zA-Z]*
+
 ### Punctuators
 "[" "]" "(" ")" "{" "}" ";" ":" "=>"
 
