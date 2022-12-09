@@ -1,0 +1,48 @@
+#######################################################################################################################################
+#######################################################################################################################################
+#### Tokens 
+### Literals
+## Integer literals
+DECIMAL_INTEGER_LITERAL ::= [0-9]+([eE][0-9]+)?
+BASED_INTEGER_LITERAL ::= [0-9]{1,2}_[0-9]+
+INTEGER_LITERAL ::= DECIMAL_INTEGER_LITERAL | BASED_INTEGER_LITERAL
+## Real literals
+REAL_LITERAL ::= [0-9]*\.[0-9]+([eE][+-]?[0-9]+)?
+## Complex literals
+COMPLEX_LITERAL ::= (REAL_LITERAL | INTEGER_LITERAL) [iIjJ]
+## Character literals
+CHAR ::= [\x20 - \x90] | [\x93 - \xFF]
+ESCAPE_SEQUENCE ::= \\[\x20 - \xFF]
+CHAR_LITERAL ::= '(CHAR | ESCAPE_SEQUENCE)' 
+## String literals 
+SCHAR ::= [\x20 - \x93] | [\x95 - \FF]
+ESCAPE_SEQUENCE ::= \\[\x20 - \xFF]
+STRING_LITERAL ::= "(CHAR_LITERAL | ESCAPE_SEQUENCE)*"
+
+### Punctuators
+"[" "]" "(" ")" "{" "}" ";" ":"
+
+### Operators 
+## Arithmetic Operators
+"+" "-" "*" "/" "//" "^" "%" 
+"+=" "-=" "*=" "/=" "//=" "^=" "%="
+
+## Element-Wise Arithmetic Operators
+"+<" "-<" "*<" "/<" "//<" "^<" "%<"
+"+<=" "-<=" "*<=" "/<=" "//<=" "^<=" "%<="
+
+## Logical Operators 
+"&&" "||" "!" "<" "<=" "<=>" ">=" ">" "==" "!="
+
+## Bitwise Operators 
+"&" "|" "^^" "~" "<<" ">>"
+"&=" "|=" "^^=" "~=" "<<=" ">>="
+
+## Element-Wise Bitwise Operators 
+"&<" "|<" "^^<" "~<" "<<<" ">><"
+"&<=" "|<=" "^^<=" "~<=" "<<<=" ">><="
+
+## Miscellaneous Operators 
+"=" "<-" "++" "--" "..." "&" "::" "." "?:" (ternary operator)
+
+### Keywords
