@@ -490,7 +490,7 @@ namespace Nikola { namespace SyntaxAnalysis {
     DOUBLE_SLASH = 22,             // "//"
     CARET = 23,                    // "^"
     PERCENT = 24,                  // "%"
-    PLUS_ASIGN = 25,               // "+="
+    PLUS_ASSIGN = 25,              // "+="
     MINUS_ASSIGN = 26,             // "-="
     STAR_ASSIGN = 27,              // "*="
     SLASH_ASSIGN = 28,             // "/="
@@ -663,7 +663,7 @@ namespace Nikola { namespace SyntaxAnalysis {
         S_DOUBLE_SLASH = 22,                     // "//"
         S_CARET = 23,                            // "^"
         S_PERCENT = 24,                          // "%"
-        S_PLUS_ASIGN = 25,                       // "+="
+        S_PLUS_ASSIGN = 25,                      // "+="
         S_MINUS_ASSIGN = 26,                     // "-="
         S_STAR_ASSIGN = 27,                      // "*="
         S_SLASH_ASSIGN = 28,                     // "/="
@@ -1450,16 +1450,16 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_PLUS_ASIGN (location_type l)
+      make_PLUS_ASSIGN (location_type l)
       {
-        return symbol_type (token::PLUS_ASIGN, std::move (l));
+        return symbol_type (token::PLUS_ASSIGN, std::move (l));
       }
 #else
       static
       symbol_type
-      make_PLUS_ASIGN (const location_type& l)
+      make_PLUS_ASSIGN (const location_type& l)
       {
-        return symbol_type (token::PLUS_ASIGN, l);
+        return symbol_type (token::PLUS_ASSIGN, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
