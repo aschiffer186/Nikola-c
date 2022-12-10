@@ -56,5 +56,13 @@ complex_literal ({integer_literal}|{real_literal}[iIjJ])
 "/" {return Parser::make_SLASH(loc_);}
 "//" {return Parser::make_DOUBLE_SLASH(loc_);}
 "^" {return Parser::make_CARET(loc_);}
+"%" {return Parser::make_PERCENT(loc_);}
+"+=" {return Parser::make_PLUS_ASSIGN(loc_);}
+"-=" {return Parser::make_MINUS_ASSIGN(loc_);}
+"*=" {return Parser::make_STAR_ASSIGN(loc_);}
+"/=" {return Parser::make_SLASH_ASSIGN(loc_);}
+"//=" {return Parser::make_DOUBLE_SLASH_ASSIGN(loc_);}
+"^=" {return Parser::make_CARET_ASSIGN(loc_);}
+"%=" {return Parser::make_PERCENT_ASSIGN(loc_);}
 
 {ident_start}{ident_continue}* {return Parser::make_IDENTIFIER(yytext, loc_);}
