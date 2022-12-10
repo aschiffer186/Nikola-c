@@ -414,7 +414,7 @@ namespace Nikola { namespace SyntaxAnalysis {
       // COMPLEX_LITERAL
       // CHAR_LITERAL
       // STRING_LITERAL
-      // IDENTIFIERS
+      // IDENTIFIER
       char dummy1[sizeof (std::string)];
     };
 
@@ -473,7 +473,7 @@ namespace Nikola { namespace SyntaxAnalysis {
     COMPLEX_LITERAL = 5,           // COMPLEX_LITERAL
     CHAR_LITERAL = 6,              // CHAR_LITERAL
     STRING_LITERAL = 7,            // STRING_LITERAL
-    IDENTIFIERS = 8,               // IDENTIFIERS
+    IDENTIFIER = 8,                // IDENTIFIER
     LEFT_BRACKET = 9,              // "["
     RIGHT_BRACKET = 10,            // "]"
     LEFT_PARENTHESIS = 11,         // "("
@@ -552,7 +552,74 @@ namespace Nikola { namespace SyntaxAnalysis {
     ELLIPSIS = 84,                 // "..."
     COLON_COLON = 85,              // "::"
     DOT = 86,                      // "."
-    QUESTION = 87                  // "?"
+    QUESTION = 87,                 // "?"
+    INT8_T = 88,                   // "int8_t"
+    INT16_T = 89,                  // "int16_t"
+    INT32_T = 90,                  // "int32_t"
+    INT64_T = 91,                  // "int64_t"
+    INT = 92,                      // "int"
+    REAL32_T = 93,                 // "real32_t"
+    REAL64_T = 94,                 // "real64_t"
+    REAL = 95,                     // "real"
+    BOOL = 96,                     // "bool"
+    CHAR = 97,                     // "char"
+    MOD = 98,                      // "mod"
+    VOID = 99,                     // "void"
+    TRUE = 100,                    // "true"
+    FALSE = 101,                   // "false"
+    THIS = 102,                    // "this"
+    NPTR = 103,                    // "nptr"
+    LET = 104,                     // "let"
+    CONST = 105,                   // "const"
+    COMPEVAL = 106,                // "compeval"
+    PURE = 107,                    // "pure"
+    STATIC = 108,                  // "static"
+    NOTHROW = 109,                 // "nothrow"
+    IN = 110,                      // "in"
+    INOUT = 111,                   // "inout"
+    OUT = 112,                     // "out"
+    MOVE = 113,                    // "move"
+    OPERATOR = 114,                // "operator"
+    DELETE = 115,                  // "delete"
+    CLASS = 116,                   // "class"
+    PUBLIC = 117,                  // "public"
+    PROTECTED = 118,               // "protected"
+    PRIVATE = 119,                 // "private"
+    ENUM = 120,                    // "enum"
+    CONSTRUCTOR = 121,             // "constructor"
+    DESTRUCTOR = 122,              // "destructor"
+    DEFAULT = 123,                 // "default"
+    DEFINE = 124,                  // "define"
+    IF = 125,                      // "if"
+    ELSE = 126,                    // "else"
+    ELSE_IF = 127,                 // "else if"
+    FOR = 128,                     // "for"
+    DO = 129,                      // "do"
+    WHILE = 130,                   // "while"
+    TRY = 131,                     // "try"
+    CATCH = 132,                   // "catch"
+    THROW = 133,                   // "throw"
+    BREAK = 134,                   // "break"
+    RETURN = 135,                  // "return"
+    CONTINUE = 136,                // "continue"
+    MATCH = 137,                   // "match"
+    WHEN = 138,                    // "when"
+    TYPESET = 139,                 // "typeset"
+    TEMPLATE = 140,                // "template"
+    WHERE = 141,                   // "where"
+    MODULE = 142,                  // "module"
+    NAMESPACE = 143,               // "namespace"
+    IMPORT = 144,                  // "import"
+    FROM = 145,                    // "from"
+    AS = 146,                      // "as"
+    WITH = 147,                    // "with"
+    IS = 148,                      // "is"
+    SIZEOF = 149,                  // "sizeof"
+    TYPEOF = 150,                  // "typeof"
+    STATIC_ASSERT = 151,           // "static_assert"
+    ASSERT = 152,                  // "assert"
+    NEW = 153,                     // "new"
+    DYNAMIC = 154                  // "dynamic"
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -569,7 +636,7 @@ namespace Nikola { namespace SyntaxAnalysis {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 88, ///< Number of tokens.
+        YYNTOKENS = 155, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
@@ -579,7 +646,7 @@ namespace Nikola { namespace SyntaxAnalysis {
         S_COMPLEX_LITERAL = 5,                   // COMPLEX_LITERAL
         S_CHAR_LITERAL = 6,                      // CHAR_LITERAL
         S_STRING_LITERAL = 7,                    // STRING_LITERAL
-        S_IDENTIFIERS = 8,                       // IDENTIFIERS
+        S_IDENTIFIER = 8,                        // IDENTIFIER
         S_LEFT_BRACKET = 9,                      // "["
         S_RIGHT_BRACKET = 10,                    // "]"
         S_LEFT_PARENTHESIS = 11,                 // "("
@@ -659,8 +726,75 @@ namespace Nikola { namespace SyntaxAnalysis {
         S_COLON_COLON = 85,                      // "::"
         S_DOT = 86,                              // "."
         S_QUESTION = 87,                         // "?"
-        S_YYACCEPT = 88,                         // $accept
-        S_nikola = 89                            // nikola
+        S_INT8_T = 88,                           // "int8_t"
+        S_INT16_T = 89,                          // "int16_t"
+        S_INT32_T = 90,                          // "int32_t"
+        S_INT64_T = 91,                          // "int64_t"
+        S_INT = 92,                              // "int"
+        S_REAL32_T = 93,                         // "real32_t"
+        S_REAL64_T = 94,                         // "real64_t"
+        S_REAL = 95,                             // "real"
+        S_BOOL = 96,                             // "bool"
+        S_CHAR = 97,                             // "char"
+        S_MOD = 98,                              // "mod"
+        S_VOID = 99,                             // "void"
+        S_TRUE = 100,                            // "true"
+        S_FALSE = 101,                           // "false"
+        S_THIS = 102,                            // "this"
+        S_NPTR = 103,                            // "nptr"
+        S_LET = 104,                             // "let"
+        S_CONST = 105,                           // "const"
+        S_COMPEVAL = 106,                        // "compeval"
+        S_PURE = 107,                            // "pure"
+        S_STATIC = 108,                          // "static"
+        S_NOTHROW = 109,                         // "nothrow"
+        S_IN = 110,                              // "in"
+        S_INOUT = 111,                           // "inout"
+        S_OUT = 112,                             // "out"
+        S_MOVE = 113,                            // "move"
+        S_OPERATOR = 114,                        // "operator"
+        S_DELETE = 115,                          // "delete"
+        S_CLASS = 116,                           // "class"
+        S_PUBLIC = 117,                          // "public"
+        S_PROTECTED = 118,                       // "protected"
+        S_PRIVATE = 119,                         // "private"
+        S_ENUM = 120,                            // "enum"
+        S_CONSTRUCTOR = 121,                     // "constructor"
+        S_DESTRUCTOR = 122,                      // "destructor"
+        S_DEFAULT = 123,                         // "default"
+        S_DEFINE = 124,                          // "define"
+        S_IF = 125,                              // "if"
+        S_ELSE = 126,                            // "else"
+        S_ELSE_IF = 127,                         // "else if"
+        S_FOR = 128,                             // "for"
+        S_DO = 129,                              // "do"
+        S_WHILE = 130,                           // "while"
+        S_TRY = 131,                             // "try"
+        S_CATCH = 132,                           // "catch"
+        S_THROW = 133,                           // "throw"
+        S_BREAK = 134,                           // "break"
+        S_RETURN = 135,                          // "return"
+        S_CONTINUE = 136,                        // "continue"
+        S_MATCH = 137,                           // "match"
+        S_WHEN = 138,                            // "when"
+        S_TYPESET = 139,                         // "typeset"
+        S_TEMPLATE = 140,                        // "template"
+        S_WHERE = 141,                           // "where"
+        S_MODULE = 142,                          // "module"
+        S_NAMESPACE = 143,                       // "namespace"
+        S_IMPORT = 144,                          // "import"
+        S_FROM = 145,                            // "from"
+        S_AS = 146,                              // "as"
+        S_WITH = 147,                            // "with"
+        S_IS = 148,                              // "is"
+        S_SIZEOF = 149,                          // "sizeof"
+        S_TYPEOF = 150,                          // "typeof"
+        S_STATIC_ASSERT = 151,                   // "static_assert"
+        S_ASSERT = 152,                          // "assert"
+        S_NEW = 153,                             // "new"
+        S_DYNAMIC = 154,                         // "dynamic"
+        S_YYACCEPT = 155,                        // $accept
+        S_nikola = 156                           // nikola
       };
     };
 
@@ -702,7 +836,7 @@ namespace Nikola { namespace SyntaxAnalysis {
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -772,7 +906,7 @@ switch (yykind)
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.template destroy< std::string > ();
         break;
 
@@ -875,7 +1009,7 @@ switch (yykind)
 #if !defined _MSC_VER || defined __clang__
         YY_ASSERT (tok == token::YYEOF
                    || (token::YYerror <= tok && tok <= token::YYUNDEF)
-                   || (token::LEFT_BRACKET <= tok && tok <= token::QUESTION));
+                   || (token::LEFT_BRACKET <= tok && tok <= token::DYNAMIC));
 #endif
       }
 #if 201103L <= YY_CPLUSPLUS
@@ -887,7 +1021,7 @@ switch (yykind)
 #endif
       {
 #if !defined _MSC_VER || defined __clang__
-        YY_ASSERT ((token::INTEGER_LITERAL <= tok && tok <= token::IDENTIFIERS));
+        YY_ASSERT ((token::INTEGER_LITERAL <= tok && tok <= token::IDENTIFIER));
 #endif
       }
     };
@@ -1061,16 +1195,16 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_IDENTIFIERS (std::string v, location_type l)
+      make_IDENTIFIER (std::string v, location_type l)
       {
-        return symbol_type (token::IDENTIFIERS, std::move (v), std::move (l));
+        return symbol_type (token::IDENTIFIER, std::move (v), std::move (l));
       }
 #else
       static
       symbol_type
-      make_IDENTIFIERS (const std::string& v, const location_type& l)
+      make_IDENTIFIER (const std::string& v, const location_type& l)
       {
-        return symbol_type (token::IDENTIFIERS, v, l);
+        return symbol_type (token::IDENTIFIER, v, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -2258,6 +2392,1011 @@ switch (yykind)
         return symbol_type (token::QUESTION, l);
       }
 #endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_INT8_T (location_type l)
+      {
+        return symbol_type (token::INT8_T, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_INT8_T (const location_type& l)
+      {
+        return symbol_type (token::INT8_T, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_INT16_T (location_type l)
+      {
+        return symbol_type (token::INT16_T, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_INT16_T (const location_type& l)
+      {
+        return symbol_type (token::INT16_T, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_INT32_T (location_type l)
+      {
+        return symbol_type (token::INT32_T, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_INT32_T (const location_type& l)
+      {
+        return symbol_type (token::INT32_T, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_INT64_T (location_type l)
+      {
+        return symbol_type (token::INT64_T, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_INT64_T (const location_type& l)
+      {
+        return symbol_type (token::INT64_T, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_INT (location_type l)
+      {
+        return symbol_type (token::INT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_INT (const location_type& l)
+      {
+        return symbol_type (token::INT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_REAL32_T (location_type l)
+      {
+        return symbol_type (token::REAL32_T, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_REAL32_T (const location_type& l)
+      {
+        return symbol_type (token::REAL32_T, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_REAL64_T (location_type l)
+      {
+        return symbol_type (token::REAL64_T, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_REAL64_T (const location_type& l)
+      {
+        return symbol_type (token::REAL64_T, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_REAL (location_type l)
+      {
+        return symbol_type (token::REAL, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_REAL (const location_type& l)
+      {
+        return symbol_type (token::REAL, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_BOOL (location_type l)
+      {
+        return symbol_type (token::BOOL, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_BOOL (const location_type& l)
+      {
+        return symbol_type (token::BOOL, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CHAR (location_type l)
+      {
+        return symbol_type (token::CHAR, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CHAR (const location_type& l)
+      {
+        return symbol_type (token::CHAR, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_MOD (location_type l)
+      {
+        return symbol_type (token::MOD, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_MOD (const location_type& l)
+      {
+        return symbol_type (token::MOD, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_VOID (location_type l)
+      {
+        return symbol_type (token::VOID, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_VOID (const location_type& l)
+      {
+        return symbol_type (token::VOID, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_TRUE (location_type l)
+      {
+        return symbol_type (token::TRUE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_TRUE (const location_type& l)
+      {
+        return symbol_type (token::TRUE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_FALSE (location_type l)
+      {
+        return symbol_type (token::FALSE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_FALSE (const location_type& l)
+      {
+        return symbol_type (token::FALSE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_THIS (location_type l)
+      {
+        return symbol_type (token::THIS, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_THIS (const location_type& l)
+      {
+        return symbol_type (token::THIS, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_NPTR (location_type l)
+      {
+        return symbol_type (token::NPTR, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_NPTR (const location_type& l)
+      {
+        return symbol_type (token::NPTR, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_LET (location_type l)
+      {
+        return symbol_type (token::LET, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_LET (const location_type& l)
+      {
+        return symbol_type (token::LET, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CONST (location_type l)
+      {
+        return symbol_type (token::CONST, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CONST (const location_type& l)
+      {
+        return symbol_type (token::CONST, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_COMPEVAL (location_type l)
+      {
+        return symbol_type (token::COMPEVAL, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_COMPEVAL (const location_type& l)
+      {
+        return symbol_type (token::COMPEVAL, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_PURE (location_type l)
+      {
+        return symbol_type (token::PURE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_PURE (const location_type& l)
+      {
+        return symbol_type (token::PURE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_STATIC (location_type l)
+      {
+        return symbol_type (token::STATIC, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_STATIC (const location_type& l)
+      {
+        return symbol_type (token::STATIC, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_NOTHROW (location_type l)
+      {
+        return symbol_type (token::NOTHROW, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_NOTHROW (const location_type& l)
+      {
+        return symbol_type (token::NOTHROW, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_IN (location_type l)
+      {
+        return symbol_type (token::IN, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_IN (const location_type& l)
+      {
+        return symbol_type (token::IN, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_INOUT (location_type l)
+      {
+        return symbol_type (token::INOUT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_INOUT (const location_type& l)
+      {
+        return symbol_type (token::INOUT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OUT (location_type l)
+      {
+        return symbol_type (token::OUT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_OUT (const location_type& l)
+      {
+        return symbol_type (token::OUT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_MOVE (location_type l)
+      {
+        return symbol_type (token::MOVE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_MOVE (const location_type& l)
+      {
+        return symbol_type (token::MOVE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OPERATOR (location_type l)
+      {
+        return symbol_type (token::OPERATOR, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_OPERATOR (const location_type& l)
+      {
+        return symbol_type (token::OPERATOR, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_DELETE (location_type l)
+      {
+        return symbol_type (token::DELETE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_DELETE (const location_type& l)
+      {
+        return symbol_type (token::DELETE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CLASS (location_type l)
+      {
+        return symbol_type (token::CLASS, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CLASS (const location_type& l)
+      {
+        return symbol_type (token::CLASS, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_PUBLIC (location_type l)
+      {
+        return symbol_type (token::PUBLIC, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_PUBLIC (const location_type& l)
+      {
+        return symbol_type (token::PUBLIC, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_PROTECTED (location_type l)
+      {
+        return symbol_type (token::PROTECTED, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_PROTECTED (const location_type& l)
+      {
+        return symbol_type (token::PROTECTED, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_PRIVATE (location_type l)
+      {
+        return symbol_type (token::PRIVATE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_PRIVATE (const location_type& l)
+      {
+        return symbol_type (token::PRIVATE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_ENUM (location_type l)
+      {
+        return symbol_type (token::ENUM, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_ENUM (const location_type& l)
+      {
+        return symbol_type (token::ENUM, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CONSTRUCTOR (location_type l)
+      {
+        return symbol_type (token::CONSTRUCTOR, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CONSTRUCTOR (const location_type& l)
+      {
+        return symbol_type (token::CONSTRUCTOR, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_DESTRUCTOR (location_type l)
+      {
+        return symbol_type (token::DESTRUCTOR, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_DESTRUCTOR (const location_type& l)
+      {
+        return symbol_type (token::DESTRUCTOR, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_DEFAULT (location_type l)
+      {
+        return symbol_type (token::DEFAULT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_DEFAULT (const location_type& l)
+      {
+        return symbol_type (token::DEFAULT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_DEFINE (location_type l)
+      {
+        return symbol_type (token::DEFINE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_DEFINE (const location_type& l)
+      {
+        return symbol_type (token::DEFINE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_IF (location_type l)
+      {
+        return symbol_type (token::IF, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_IF (const location_type& l)
+      {
+        return symbol_type (token::IF, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_ELSE (location_type l)
+      {
+        return symbol_type (token::ELSE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_ELSE (const location_type& l)
+      {
+        return symbol_type (token::ELSE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_ELSE_IF (location_type l)
+      {
+        return symbol_type (token::ELSE_IF, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_ELSE_IF (const location_type& l)
+      {
+        return symbol_type (token::ELSE_IF, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_FOR (location_type l)
+      {
+        return symbol_type (token::FOR, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_FOR (const location_type& l)
+      {
+        return symbol_type (token::FOR, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_DO (location_type l)
+      {
+        return symbol_type (token::DO, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_DO (const location_type& l)
+      {
+        return symbol_type (token::DO, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_WHILE (location_type l)
+      {
+        return symbol_type (token::WHILE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_WHILE (const location_type& l)
+      {
+        return symbol_type (token::WHILE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_TRY (location_type l)
+      {
+        return symbol_type (token::TRY, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_TRY (const location_type& l)
+      {
+        return symbol_type (token::TRY, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CATCH (location_type l)
+      {
+        return symbol_type (token::CATCH, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CATCH (const location_type& l)
+      {
+        return symbol_type (token::CATCH, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_THROW (location_type l)
+      {
+        return symbol_type (token::THROW, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_THROW (const location_type& l)
+      {
+        return symbol_type (token::THROW, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_BREAK (location_type l)
+      {
+        return symbol_type (token::BREAK, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_BREAK (const location_type& l)
+      {
+        return symbol_type (token::BREAK, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_RETURN (location_type l)
+      {
+        return symbol_type (token::RETURN, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_RETURN (const location_type& l)
+      {
+        return symbol_type (token::RETURN, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CONTINUE (location_type l)
+      {
+        return symbol_type (token::CONTINUE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CONTINUE (const location_type& l)
+      {
+        return symbol_type (token::CONTINUE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_MATCH (location_type l)
+      {
+        return symbol_type (token::MATCH, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_MATCH (const location_type& l)
+      {
+        return symbol_type (token::MATCH, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_WHEN (location_type l)
+      {
+        return symbol_type (token::WHEN, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_WHEN (const location_type& l)
+      {
+        return symbol_type (token::WHEN, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_TYPESET (location_type l)
+      {
+        return symbol_type (token::TYPESET, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_TYPESET (const location_type& l)
+      {
+        return symbol_type (token::TYPESET, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_TEMPLATE (location_type l)
+      {
+        return symbol_type (token::TEMPLATE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_TEMPLATE (const location_type& l)
+      {
+        return symbol_type (token::TEMPLATE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_WHERE (location_type l)
+      {
+        return symbol_type (token::WHERE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_WHERE (const location_type& l)
+      {
+        return symbol_type (token::WHERE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_MODULE (location_type l)
+      {
+        return symbol_type (token::MODULE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_MODULE (const location_type& l)
+      {
+        return symbol_type (token::MODULE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_NAMESPACE (location_type l)
+      {
+        return symbol_type (token::NAMESPACE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_NAMESPACE (const location_type& l)
+      {
+        return symbol_type (token::NAMESPACE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_IMPORT (location_type l)
+      {
+        return symbol_type (token::IMPORT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_IMPORT (const location_type& l)
+      {
+        return symbol_type (token::IMPORT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_FROM (location_type l)
+      {
+        return symbol_type (token::FROM, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_FROM (const location_type& l)
+      {
+        return symbol_type (token::FROM, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_AS (location_type l)
+      {
+        return symbol_type (token::AS, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_AS (const location_type& l)
+      {
+        return symbol_type (token::AS, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_WITH (location_type l)
+      {
+        return symbol_type (token::WITH, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_WITH (const location_type& l)
+      {
+        return symbol_type (token::WITH, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_IS (location_type l)
+      {
+        return symbol_type (token::IS, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_IS (const location_type& l)
+      {
+        return symbol_type (token::IS, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_SIZEOF (location_type l)
+      {
+        return symbol_type (token::SIZEOF, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_SIZEOF (const location_type& l)
+      {
+        return symbol_type (token::SIZEOF, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_TYPEOF (location_type l)
+      {
+        return symbol_type (token::TYPEOF, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_TYPEOF (const location_type& l)
+      {
+        return symbol_type (token::TYPEOF, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_STATIC_ASSERT (location_type l)
+      {
+        return symbol_type (token::STATIC_ASSERT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_STATIC_ASSERT (const location_type& l)
+      {
+        return symbol_type (token::STATIC_ASSERT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_ASSERT (location_type l)
+      {
+        return symbol_type (token::ASSERT, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_ASSERT (const location_type& l)
+      {
+        return symbol_type (token::ASSERT, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_NEW (location_type l)
+      {
+        return symbol_type (token::NEW, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_NEW (const location_type& l)
+      {
+        return symbol_type (token::NEW, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_DYNAMIC (location_type l)
+      {
+        return symbol_type (token::DYNAMIC, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_DYNAMIC (const location_type& l)
+      {
+        return symbol_type (token::DYNAMIC, l);
+      }
+#endif
 
 
     class context
@@ -2355,10 +3494,10 @@ switch (yykind)
 
     // YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
     // state STATE-NUM.
-    static const signed char yystos_[];
+    static const unsigned char yystos_[];
 
     // YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.
-    static const signed char yyr1_[];
+    static const unsigned char yyr1_[];
 
     // YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.
     static const signed char yyr2_[];
@@ -2632,7 +3771,7 @@ switch (yykind)
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -2672,7 +3811,7 @@ switch (yykind)
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
@@ -2743,7 +3882,7 @@ switch (yykind)
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 2747 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 3886 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 
 

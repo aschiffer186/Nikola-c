@@ -66,7 +66,7 @@ class public protected private enum constructor destructor default
 define 
 
 ## Control Flow 
-if else if else for do which try catch throw break return continue match when 
+if else if else for do while try catch throw break return continue match when 
 
 ## Generic 
 typeset template where

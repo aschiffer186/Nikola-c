@@ -206,7 +206,7 @@ namespace Nikola { namespace SyntaxAnalysis {
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
         break;
 
@@ -230,7 +230,7 @@ namespace Nikola { namespace SyntaxAnalysis {
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.move< std::string > (YY_MOVE (that.value));
         break;
 
@@ -254,7 +254,7 @@ namespace Nikola { namespace SyntaxAnalysis {
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.copy< std::string > (that.value);
         break;
 
@@ -277,7 +277,7 @@ namespace Nikola { namespace SyntaxAnalysis {
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         value.move< std::string > (that.value);
         break;
 
@@ -555,7 +555,7 @@ namespace Nikola { namespace SyntaxAnalysis {
       case symbol_kind::S_COMPLEX_LITERAL: // COMPLEX_LITERAL
       case symbol_kind::S_CHAR_LITERAL: // CHAR_LITERAL
       case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
-      case symbol_kind::S_IDENTIFIERS: // IDENTIFIERS
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
         yylhs.value.emplace< std::string > ();
         break;
 
@@ -766,13 +766,22 @@ namespace Nikola { namespace SyntaxAnalysis {
     {
     "end of file", "error", "invalid token", "INTEGER_LITERAL",
   "REAL_LITERAL", "COMPLEX_LITERAL", "CHAR_LITERAL", "STRING_LITERAL",
-  "IDENTIFIERS", "[", "]", "(", ")", "{", "}", ";", ":", "=>", "+", "-",
+  "IDENTIFIER", "[", "]", "(", ")", "{", "}", ";", ":", "=>", "+", "-",
   "*", "/", "//", "^", "%", "+=", "-=", "*=", "/=", "//=", "^=", "%=",
   "+<", "-<", "*<", "/<", "//<", "^<", "%<", "+<=", "-<=", "*<=", "/<=",
   "//<=", "^<=", "%<=", "&&", "||", "!", "<", "<=", "<=>", ">=", ">", "==",
   "!=", "&", "|", "^^", "~", "<<", ">>", "&=", "|=", "^^=", "~=", "<<=",
   ">>=", "&<", "|<", "^^<", "~<", "<<<", ">><", "&<=", "|<=", "^^<=",
   "~<=", "<<<=", ">><=", "=", "<-", "++", "--", "...", "::", ".", "?",
+  "int8_t", "int16_t", "int32_t", "int64_t", "int", "real32_t", "real64_t",
+  "real", "bool", "char", "mod", "void", "true", "false", "this", "nptr",
+  "let", "const", "compeval", "pure", "static", "nothrow", "in", "inout",
+  "out", "move", "operator", "delete", "class", "public", "protected",
+  "private", "enum", "constructor", "destructor", "default", "define",
+  "if", "else", "else if", "for", "do", "while", "try", "catch", "throw",
+  "break", "return", "continue", "match", "when", "typeset", "template",
+  "where", "module", "namespace", "import", "from", "as", "with", "is",
+  "sizeof", "typeof", "static_assert", "assert", "new", "dynamic",
   "$accept", "nikola", YY_NULLPTR
     };
     return yy_sname[yysymbol];
@@ -1082,16 +1091,16 @@ namespace Nikola { namespace SyntaxAnalysis {
       56,     0
   };
 
-  const signed char
+  const unsigned char
   NikolaParser::yystos_[] =
   {
-       0,    56,    89,     0
+       0,    56,   156,     0
   };
 
-  const signed char
+  const unsigned char
   NikolaParser::yyr1_[] =
   {
-       0,    88,    89
+       0,   155,   156
   };
 
   const signed char
@@ -1107,7 +1116,7 @@ namespace Nikola { namespace SyntaxAnalysis {
   const signed char
   NikolaParser::yyrline_[] =
   {
-       0,    49,    49
+       0,    74,    74
   };
 
   void
@@ -1140,5 +1149,5 @@ namespace Nikola { namespace SyntaxAnalysis {
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 1144 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
+#line 1153 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
 

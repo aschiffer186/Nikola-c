@@ -22,7 +22,7 @@
 //Literals
 %token <std::string> INTEGER_LITERAL <std::string> REAL_LITERAL <std::string> COMPLEX_LITERAL <std::string> CHAR_LITERAL <std::string> STRING_LITERAL ;
 //Identifiers
-%token <std::string> IDENTIFIERS
+%token <std::string> IDENTIFIER
 //Punctuators 
 %token LEFT_BRACKET "[" RIGHT_BRACKET "]" LEFT_PARENTHESIS "(" RIGHT_PARENTHESIS ")" LEFT_BRACE "{" RIGHT_BRACE "}" SEMI_COLON ";" COLON ":" RIGHT_ARROW "=>" ;
 // Arithemtic Operators 
@@ -64,7 +64,7 @@
 %token IF "if" ELSE "else" ELSE_IF "else if" FOR "for" DO "do" WHILE "while" TRY "try" CATCH "catch" THROW "throw" BREAK "break" RETURN "return" ;
 %token CONTINUE "continue" MATCH "match" WHEN "when" ;
 //Generic Programming 
-%define TYPESE "typeset" TEMPLATE "template" WHERE "where" ;
+%token TYPESET "typeset" TEMPLATE "template" WHERE "where" ;
 //Modules 
 %token MODULE "module" NAMESPACE "namespace" IMPORT "import" FROM "from" AS "as" WITH "with" ;
 //Expressions 
