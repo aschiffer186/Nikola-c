@@ -138,6 +138,7 @@ Terminals unused in grammar
     "typeset"
     "template"
     "where"
+    "type"
     "module"
     "namespace"
     "import"
@@ -303,26 +304,27 @@ Terminals, with rules where they appear
     "typeset" (394)
     "template" (395)
     "where" (396)
-    "module" (397)
-    "namespace" (398)
-    "import" (399)
-    "from" (400)
-    "as" (401)
-    "with" (402)
-    "is" (403)
-    "sizeof" (404)
-    "typeof" (405)
-    "static_assert" (406)
-    "assert" (407)
-    "new" (408)
-    "dynamic" (409)
+    "type" (397)
+    "module" (398)
+    "namespace" (399)
+    "import" (400)
+    "from" (401)
+    "as" (402)
+    "with" (403)
+    "is" (404)
+    "sizeof" (405)
+    "typeof" (406)
+    "static_assert" (407)
+    "assert" (408)
+    "new" (409)
+    "dynamic" (410)
 
 
 Nonterminals, with rules where they appear
 
-    $accept (155)
+    $accept (156)
         on left: 0
-    nikola (156)
+    nikola (157)
         on left: 1
         on right: 0
 

@@ -12,6 +12,7 @@ macro(create_unit_test TEST_NAME TEST_FILE)
 endmacro()
 
 add_custom_target(build_test)
-add_custom_target(run_tests COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS build_test)
+add_custom_target(run_tests DEPENDS build_test)
+add_custom_command(TARGET run_tests COMMENT "Run unit-tests" POST_BUILD COMMAND "ctest" ARGS "--output-on-failure")
 
 add_subdirectory(Lexer)

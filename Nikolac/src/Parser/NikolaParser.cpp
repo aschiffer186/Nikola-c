@@ -789,8 +789,8 @@ namespace Nikola { namespace SyntaxAnalysis {
   "private", "enum", "constructor", "destructor", "default", "define",
   "if", "else", "else if", "for", "do", "while", "try", "catch", "throw",
   "break", "return", "continue", "match", "when", "typeset", "template",
-  "where", "module", "namespace", "import", "from", "as", "with", "is",
-  "sizeof", "typeof", "static_assert", "assert", "new", "dynamic",
+  "where", "type", "module", "namespace", "import", "from", "as", "with",
+  "is", "sizeof", "typeof", "static_assert", "assert", "new", "dynamic",
   "$accept", "nikola", YY_NULLPTR
     };
     return yy_sname[yysymbol];
@@ -1103,13 +1103,13 @@ namespace Nikola { namespace SyntaxAnalysis {
   const unsigned char
   NikolaParser::yystos_[] =
   {
-       0,    56,   156,     0
+       0,    56,   157,     0
   };
 
   const unsigned char
   NikolaParser::yyr1_[] =
   {
-       0,   155,   156
+       0,   156,   157
   };
 
   const signed char

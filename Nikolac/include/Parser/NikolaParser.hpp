@@ -611,19 +611,20 @@ namespace Nikola { namespace SyntaxAnalysis {
     TYPESET = 139,                 // "typeset"
     TEMPLATE = 140,                // "template"
     WHERE = 141,                   // "where"
-    MODULE = 142,                  // "module"
-    NAMESPACE = 143,               // "namespace"
-    IMPORT = 144,                  // "import"
-    FROM = 145,                    // "from"
-    AS = 146,                      // "as"
-    WITH = 147,                    // "with"
-    IS = 148,                      // "is"
-    SIZEOF = 149,                  // "sizeof"
-    TYPEOF = 150,                  // "typeof"
-    STATIC_ASSERT = 151,           // "static_assert"
-    ASSERT = 152,                  // "assert"
-    NEW = 153,                     // "new"
-    DYNAMIC = 154                  // "dynamic"
+    TYPE = 142,                    // "type"
+    MODULE = 143,                  // "module"
+    NAMESPACE = 144,               // "namespace"
+    IMPORT = 145,                  // "import"
+    FROM = 146,                    // "from"
+    AS = 147,                      // "as"
+    WITH = 148,                    // "with"
+    IS = 149,                      // "is"
+    SIZEOF = 150,                  // "sizeof"
+    TYPEOF = 151,                  // "typeof"
+    STATIC_ASSERT = 152,           // "static_assert"
+    ASSERT = 153,                  // "assert"
+    NEW = 154,                     // "new"
+    DYNAMIC = 155                  // "dynamic"
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -640,7 +641,7 @@ namespace Nikola { namespace SyntaxAnalysis {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 155, ///< Number of tokens.
+        YYNTOKENS = 156, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
@@ -784,21 +785,22 @@ namespace Nikola { namespace SyntaxAnalysis {
         S_TYPESET = 139,                         // "typeset"
         S_TEMPLATE = 140,                        // "template"
         S_WHERE = 141,                           // "where"
-        S_MODULE = 142,                          // "module"
-        S_NAMESPACE = 143,                       // "namespace"
-        S_IMPORT = 144,                          // "import"
-        S_FROM = 145,                            // "from"
-        S_AS = 146,                              // "as"
-        S_WITH = 147,                            // "with"
-        S_IS = 148,                              // "is"
-        S_SIZEOF = 149,                          // "sizeof"
-        S_TYPEOF = 150,                          // "typeof"
-        S_STATIC_ASSERT = 151,                   // "static_assert"
-        S_ASSERT = 152,                          // "assert"
-        S_NEW = 153,                             // "new"
-        S_DYNAMIC = 154,                         // "dynamic"
-        S_YYACCEPT = 155,                        // $accept
-        S_nikola = 156                           // nikola
+        S_TYPE = 142,                            // "type"
+        S_MODULE = 143,                          // "module"
+        S_NAMESPACE = 144,                       // "namespace"
+        S_IMPORT = 145,                          // "import"
+        S_FROM = 146,                            // "from"
+        S_AS = 147,                              // "as"
+        S_WITH = 148,                            // "with"
+        S_IS = 149,                              // "is"
+        S_SIZEOF = 150,                          // "sizeof"
+        S_TYPEOF = 151,                          // "typeof"
+        S_STATIC_ASSERT = 152,                   // "static_assert"
+        S_ASSERT = 153,                          // "assert"
+        S_NEW = 154,                             // "new"
+        S_DYNAMIC = 155,                         // "dynamic"
+        S_YYACCEPT = 156,                        // $accept
+        S_nikola = 157                           // nikola
       };
     };
 
@@ -3209,6 +3211,21 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_TYPE (location_type l)
+      {
+        return symbol_type (token::TYPE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_TYPE (const location_type& l)
+      {
+        return symbol_type (token::TYPE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_MODULE (location_type l)
       {
         return symbol_type (token::MODULE, std::move (l));
@@ -3888,7 +3905,7 @@ switch (yykind)
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 3892 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 3909 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 
 

@@ -22,7 +22,7 @@ inline void runLexerTest(const std::string& testStr, NikolaParser::symbol_kind_t
     EXPECT_STREQ(token.value.as<std::string>().c_str(), testStr.c_str());
     EXPECT_EQ(token.location.begin.column, 1);
     EXPECT_EQ(token.location.begin.line, 1);
-    EXPECT_EQ(token.location.end.column, testStr.length());
+    EXPECT_EQ(token.location.end.column, testStr.length() + 1);
     EXPECT_EQ(token.location.end.line, 1);
 }
 

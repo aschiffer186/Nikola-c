@@ -35,7 +35,7 @@ based_integer_literal {digit}{1,2}\_{based_digit}+
 
 integer_literal {decimal_integer_literal}|{based_integer_literal}
 real_literal {digit}*\.{digit}+([eE][+-]?{digit}+)?
-complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_literal}[iIjJ])
+complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_literal})[iIjJ]
 %%
 %{
     loc_.step();
@@ -138,8 +138,8 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 "int32_t" {return Parser::make_INT32_T(loc_);}
 "int64_t" {return Parser::make_INT64_T(loc_);}
 "int" {return Parser::make_INT(loc_);}
-"real32_t" {return Parser::make_REAL_32_T(loc_);}
-"real64_t" {return Parser::make_REAL_64_T(loc_);}
+"real32_t" {return Parser::make_REAL32_T(loc_);}
+"real64_t" {return Parser::make_REAL64_T(loc_);}
 "real" {return Parser::make_REAL(loc_);}
 "bool" {return Parser::make_BOOL(loc_);}
 "char" {return Parser::make_CHAR(loc_);}
@@ -188,12 +188,12 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 "where" {return Parser::make_WHERE(loc_);}
 "type" {return Parser::make_TYPE(loc_);}
 
-"module" {return Parser::make_MODULE(module_);}
-"namespace" {return Parser::make_NAMESPACE(module_);}
-"import" {return Parser::make_IMPORT(module_);}
-"from" {return Parser::make_FROM(module_);}
-"as" {return Parser::make_AS(module_);}
-"with" {return Parser::make_WITH(module_);}
+"module" {return Parser::make_MODULE(loc_);}
+"namespace" {return Parser::make_NAMESPACE(loc_);}
+"import" {return Parser::make_IMPORT(loc_);}
+"from" {return Parser::make_FROM(loc_);}
+"as" {return Parser::make_AS(loc_);}
+"with" {return Parser::make_WITH(loc_);}
 
 "is" {return Parser::make_IS(loc_);}
 "sizeof" {return Parser::make_SIZEOF(loc_);}
