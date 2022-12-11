@@ -36,3 +36,5 @@
 
 # Other build files 
 build/*
+
+nikola-language-highlighting/*

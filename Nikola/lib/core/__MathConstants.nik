@@ -1,0 +1,13 @@
+module Nik.Core.Math;
+
+namespace Nik
+{
+    let compeval NIK_PI = 3.141592653589793238462;
+    let compeval NIK_PI_2 = NIK_PI/2;
+    let compeval NIK_PI_3 = NIK_PI/3;
+    let compeval NIK_PI_4 = NIK_PI/4;
+    let compeval NIK_PI_6 = NIK_PI/6;
+    let compeval NIK_1_PI = 1/NIK_PI;
+    let compeval NIK_2_PI = 2/NIK_PI;
+    let compeval NIK_SQRT_PI = 1.77245385090551602729816748;
+}
