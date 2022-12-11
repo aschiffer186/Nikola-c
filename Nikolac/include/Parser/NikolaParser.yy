@@ -76,7 +76,7 @@
 %token IF "if" ELSE "else" ELSE_IF "else if" FOR "for" DO "do" WHILE "while" TRY "try" CATCH "catch" THROW "throw" BREAK "break" RETURN "return" ;
 %token CONTINUE "continue" MATCH "match" WHEN "when" ;
 //Generic Programming 
-%token TYPESET "typeset" TEMPLATE "template" WHERE "where" ;
+%token TYPESET "typeset" TEMPLATE "template" WHERE "where" TYPE "type";
 //Modules 
 %token MODULE "module" NAMESPACE "namespace" IMPORT "import" FROM "from" AS "as" WITH "with" ;
 //Expressions 

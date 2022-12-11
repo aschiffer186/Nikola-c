@@ -1,6 +1,3 @@
-set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(PARSER_INCLUDE_DIR ${INCLUDE_DIR}/Parser)
-
 set(NIKOLA_CXX_COMPILE_OPTIONS
     "-Wall"
     "-Wextra"

@@ -133,5 +133,86 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 "." {return Parser::make_DOT(loc_);}
 "?" {return Parser::make_QUESTION(loc_);}
 
+"int8_t" {return Parser::make_INT8_T(loc_);}
+"int16_t" {return Parser::make_INT16_T(loc_);}
+"int32_t" {return Parser::make_INT32_T(loc_);}
+"int64_t" {return Parser::make_INT64_T(loc_);}
+"int" {return Parser::make_INT(loc_);}
+"real32_t" {return Parser::make_REAL_32_T(loc_);}
+"real64_t" {return Parser::make_REAL_64_T(loc_);}
+"real" {return Parser::make_REAL(loc_);}
+"bool" {return Parser::make_BOOL(loc_);}
+"char" {return Parser::make_CHAR(loc_);}
+"mod" {return Parser::make_MOD(loc_);}
+"void" {return Parser::make_VOID(loc_);}
+
+"true" {return Parser::make_TRUE(loc_);}
+"false" {return Parser::make_FALSE(loc_);}
+"this" {return Parser::make_THIS(loc_);}
+"nptr" {return Parser::make_NPTR(loc_);}
+
+"let" {return Parser::make_LET(loc_);}
+"const" {return Parser::make_CONST(loc_);}
+"compeval" {return Parser::make_COMPEVAL(loc_);}
+
+"pure" {return Parser::make_PURE(loc_);}
+"static" {return Parser::make_STATIC(loc_);}
+"nothrow" {return Parser::make_NOTHROW(loc_);}
+"in" {return Parser::make_IN(loc_);}
+"inout" {return Parser::make_INOUT(loc_);}
+"out" {return Parser::make_OUT(loc_);}
+"move" {return Parser::make_MOVE(loc_);}
+"operator" {return Parser::make_OPERATOR(loc_);}
+"delete" {return Parser::make_DELETE(loc_);}
+"default" {return Parser::make_DEFAULT(loc_);}
+
+"define" {return Parser::make_DEFINE(loc_);}
+
+"if" {return Parser::make_IF(loc_);}
+"else" {return Parser::make_ELSE(loc_);}
+"else if" {return Parser::make_ELSE_IF(loc_);}
+"for" {return Parser::make_FOR(loc_);}
+"do" {return Parser::make_DO(loc_);}
+"while" {return Parser::make_WHILE(loc_);}
+"try" {return Parser::make_TRY(loc_);}
+"catch" {return Parser::make_CATCH(loc_);}
+"throw" {return Parser::make_THROW(loc_);}
+"break" {return Parser::make_BREAK(loc_);}
+"return" {return Parser::make_RETURN(loc_);}
+"continue" {return Parser::make_CONTINUE(loc_);}
+"match" {return Parser::make_MATCH(loc_);}
+"when" {return Parser::make_WHEN(loc_);}
+
+"typeset" {return Parser::make_TYPESET(loc_);}
+"template" {return Parser::make_TEMPLATE(loc_);}
+"where" {return Parser::make_WHERE(loc_);}
+"type" {return Parser::make_TYPE(loc_);}
+
+"module" {return Parser::make_MODULE(module_);}
+"namespace" {return Parser::make_NAMESPACE(module_);}
+"import" {return Parser::make_IMPORT(module_);}
+"from" {return Parser::make_FROM(module_);}
+"as" {return Parser::make_AS(module_);}
+"with" {return Parser::make_WITH(module_);}
+
+"is" {return Parser::make_IS(loc_);}
+"sizeof" {return Parser::make_SIZEOF(loc_);}
+"typeof" {return Parser::make_TYPEOF(loc_);}
+"static_assert" {return Parser::make_STATIC_ASSERT(loc_);}
+"assert" {return Parser::make_ASSERT(loc_);}
+"new" {return Parser::make_NEW(loc_);}
+"dynamic" {return Parser::make_DYNAMIC(loc_);}
 
 {ident_start}{ident_continue}* {return Parser::make_IDENTIFIER(yytext, loc_);}
+
+<<EOF>> {return Parser::make_YYEOF(loc_);}
+
+%%
+namespace Nikola::SyntaxAnalysis
+{
+    NikolaLexer::NikolaLexer(std::istream& in)
+    : yyFlexLexer{&in}, loc_{}
+    {
+
+    }
+}
