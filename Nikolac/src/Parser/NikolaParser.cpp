@@ -41,6 +41,14 @@
 #include "NikolaParser.hpp"
 
 
+// Unqualified %code blocks.
+#line 28 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
+
+    #include "NikolaLexer.hpp"
+
+    #define yylex lexer.lex
+
+#line 52 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
 
 
 #ifndef YY_
@@ -133,17 +141,18 @@
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 namespace Nikola { namespace SyntaxAnalysis {
-#line 137 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
+#line 145 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
 
   /// Build a parser object.
-  NikolaParser::NikolaParser ()
+  NikolaParser::NikolaParser (Nikola::SyntaxAnalysis::NikolaLexer& lexer_yyarg)
 #if YYDEBUG
     : yydebug_ (false),
       yycdebug_ (&std::cerr),
 #else
     :
 #endif
-      yy_lac_established_ (false)
+      yy_lac_established_ (false),
+      lexer (lexer_yyarg)
   {}
 
   NikolaParser::~NikolaParser ()
@@ -580,7 +589,7 @@ namespace Nikola { namespace SyntaxAnalysis {
           switch (yyn)
             {
 
-#line 584 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
+#line 593 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
 
             default:
               break;
@@ -1116,7 +1125,7 @@ namespace Nikola { namespace SyntaxAnalysis {
   const signed char
   NikolaParser::yyrline_[] =
   {
-       0,    74,    74
+       0,    86,    86
   };
 
   void
@@ -1149,5 +1158,5 @@ namespace Nikola { namespace SyntaxAnalysis {
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 1153 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
+#line 1162 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaParser.cpp"
 

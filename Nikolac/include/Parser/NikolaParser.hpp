@@ -47,9 +47,13 @@
 // "%code requires" blocks.
 #line 18 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 
+    namespace Nikola::SyntaxAnalysis
+    {
+        class NikolaLexer;
+    }
     #include <string>
 
-#line 53 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 57 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -190,7 +194,7 @@
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 namespace Nikola { namespace SyntaxAnalysis {
-#line 194 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 198 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 
 
@@ -1027,7 +1031,7 @@ switch (yykind)
     };
 
     /// Build a parser object.
-    NikolaParser ();
+    NikolaParser (Nikola::SyntaxAnalysis::NikolaLexer& lexer_yyarg);
     virtual ~NikolaParser ();
 
 #if 201103L <= YY_CPLUSPLUS
@@ -3747,6 +3751,8 @@ switch (yykind)
     };
 
 
+    // User arguments.
+    Nikola::SyntaxAnalysis::NikolaLexer& lexer;
 
   };
 
@@ -3882,7 +3888,7 @@ switch (yykind)
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 3886 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 3892 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 
 

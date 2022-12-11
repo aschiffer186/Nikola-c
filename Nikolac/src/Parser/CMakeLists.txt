@@ -16,5 +16,5 @@ ADD_FLEX_BISON_DEPENDENCY(NikolaLexer NikolaParser)
 
 add_library(Parser ${FLEX_NikolaLexer_OUTPUTS} ${BISON_NikolaParser_OUTPUTS})
 target_include_directories(Parser PUBLIC ${PARSER_INCLUDE_DIR})
-target_compile_features(Parser PRIVATE cxx_std_20)
+target_compile_features(Parser PRIVATE cxx_std_23)
 target_compile_options(Parser PRIVATE ${NIKOLA_CXX_COMPILER_OPTIONS})

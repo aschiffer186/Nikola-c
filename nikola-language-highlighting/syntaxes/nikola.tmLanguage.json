@@ -1,0 +1,69 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Nikola",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.nikola",
+					"match": "\\b(if|else if|else|for|do|which|try|catch|throw|break|return|continue|match|when)\\b"
+				},
+				{
+					"name": "storage.type.nikola",
+					"match": "\\b(class|enum|constructor|destructor|operator)\\b"
+				},
+				{
+					"name": "storage.type.builtin.nikola",
+					"match": "\\b(int8_t|int16_t|int32_t|int64_t|int|real32_t|real64_t|real|bool|char|mod|void)\\b"
+				},
+				{
+					"name": "storage.modifier.nikola",
+					"match": "\\b(let|const|compeval|pure|static|nothrow|in|inout|out|delete|public|protected|private|default|define)\\b"
+				},
+				{
+					"name": "constant.language.nikola",
+					"match": "\\b(true|false|this|nptr)"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.nikola",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.nikola",
+					"match": "\\\\."
+				}
+			]
+		},
+		"numbers": {
+			"patterns":[
+				{
+					"name": "constant.language.integer.nikola",
+					"match": "([0-9]{1,2}_)?[0-9]+"
+				},
+				{
+					"name": "constant.language.real.nikola",
+					"match": "[0-9]*\\.[0-9]+([eE][+-}?[0-9]+)?"
+				},
+				{
+					"name": "constant.language.complex.nikola",
+					"match": "(([0-9]{1,2}_)?[0-9]+)|([0-9]*\\.[0-9]+([eE][+-}?[0-9]+))[iIjJ]"
+				}
+			]
+		}
+	},
+	"scopeName": "source.nikola"
+}

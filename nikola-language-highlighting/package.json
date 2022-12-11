@@ -1,0 +1,25 @@
+{
+  "name": "nikola-language-highlighting",
+  "displayName": "Nikola Language Highlighting",
+  "description": "Highlighting for Nikola programming language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "nikola",
+      "aliases": ["Nikola", "nikola"],
+      "extensions": [".nik"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "nikola",
+      "scopeName": "source.nikola",
+      "path": "./syntaxes/nikola.tmLanguage.json"
+    }]
+  }
+}

@@ -16,7 +16,19 @@
 %define parse.trace
 
 %code requires {
+    namespace Nikola::SyntaxAnalysis
+    {
+        class NikolaLexer;
+    }
     #include <string>
+}
+
+%parse-param {Nikola::SyntaxAnalysis::NikolaLexer& lexer}
+
+%code {
+    #include "NikolaLexer.hpp"
+
+    #define yylex lexer.lex
 }
 
 //Literals
