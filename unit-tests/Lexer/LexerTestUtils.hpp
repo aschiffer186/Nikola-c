@@ -26,4 +26,19 @@ inline void runLexerTest(const std::string& testStr, NikolaParser::symbol_kind_t
     EXPECT_EQ(token.location.end.line, 1);
 }
 
+inline void runLexerTestValueless(const std::string& testStr, NikolaParser::symbol_kind_type expectedSymbolKind)
+{
+    std::stringstream testStream{testStr};
+    NikolaLexer lexer{testStream};
+
+    NikolaParser::symbol_type token = lexer.lex();
+
+    EXPECT_EQ(token.kind(), expectedSymbolKind);
+    EXPECT_EQ(token.location.begin.column, 1);
+    EXPECT_EQ(token.location.begin.line, 1);
+    EXPECT_EQ(token.location.end.column, testStr.length() + 1);
+    EXPECT_EQ(token.location.end.line, 1);
+}
+
+
 #endif

@@ -28,7 +28,8 @@ char_char [\x20-\x90\x93-\xFF]
 string_char [\x20-\x93\x96-\xFF]
 escape_char \\[\x20-\xFF]
 ident_start [_a-zA-Z]
-ident_continue [_a-zA-Z-]
+ident_continue [_0-9a-zA-Z-]
+ident_end [a-zA-Z_0-9]
 
 decimal_integer_literal {digit}+
 based_integer_literal {digit}{1,2}\_{based_digit}+
@@ -42,6 +43,7 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 %}
 \n+ loc_.lines(yyleng); loc_.step();
 [[:space:]]+ loc_.step();
+#[^\n]+\n loc_.step();
 
 {integer_literal} {return Parser::make_INTEGER_LITERAL(yytext, loc_);}
 {real_literal} {return Parser::make_REAL_LITERAL(yytext, loc_);}
@@ -97,6 +99,8 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 "<=>" {return Parser::make_SPACESHIP(loc_);}
 ">" {return Parser::make_GREATER(loc_);}
 ">=" {return Parser::make_GREATER_EQ(loc_);}
+"==" {return Parser::make_EQ(loc_);}
+"!=" {return Parser::make_NEQ(loc_);}
 
 "&" {return Parser::make_AMP(loc_);}
 "|" {return Parser::make_PIPE(loc_);}
@@ -203,9 +207,13 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 "new" {return Parser::make_NEW(loc_);}
 "dynamic" {return Parser::make_DYNAMIC(loc_);}
 
-{ident_start}{ident_continue}* {return Parser::make_IDENTIFIER(yytext, loc_);}
+{ident_start}{ident_continue}*{ident_end}? {return Parser::make_IDENTIFIER(yytext, loc_);}
 
 <<EOF>> {return Parser::make_YYEOF(loc_);}
+
+. {
+    throw 1;
+}
 
 %%
 namespace Nikola::SyntaxAnalysis

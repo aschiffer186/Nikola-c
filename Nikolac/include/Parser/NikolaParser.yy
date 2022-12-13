@@ -56,6 +56,8 @@
 // Miscellaneous Operators 
 %token ASSIGN "=" LEFT_ARROW "<-" PLUS_PLUS "++" MINUS_MINUS "--" ELLIPSIS "..." COLON_COLON "::" DOT "." QUESTION "?" ;
 
+//Operator precedence
+
 //Keywords 
 //Built-in-types 
 %token INT8_T "int8_t" INT16_T "int16_t" INT32_T "int32_t" INT64_T "int64_t" INT "int" REAL32_T "real32_t" REAL64_T "real64_t" REAL "real" BOOL "bool" ;
@@ -83,4 +85,10 @@
 %token IS "is" SIZEOF "sizeof" TYPEOF "typeof" STATIC_ASSERT "static_assert" ASSERT "assert" NEW "new" DYNAMIC "dynamic" ;
 %%
 %start nikola;
-nikola: "&" ;
+nikola: statements;
+
+statements: statement statements 
+| %empty; 
+
+statement: expression ";" ;
+expression: %empty ;

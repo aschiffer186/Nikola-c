@@ -5,3 +5,12 @@ endmacro()
 
 create_unit_test(TestLexLiterals TestLexLiterals.cpp)
 link_unit_tests(TestLexLiterals)
+
+create_unit_test(TestLexIdentifiers TestLexIdentifiers.cpp)
+link_unit_tests(TestLexIdentifiers)
+
+create_unit_test(TestLexPunctuators TestLexPunctuators.cpp)
+link_unit_tests(TestLexPunctuators)
+
+create_unit_test(TestLexOperators TestLexOperators.cpp)
+link_unit_tests(TestLexOperators)
