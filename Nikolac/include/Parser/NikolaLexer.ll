@@ -170,6 +170,15 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 "delete" {return Parser::make_DELETE(loc_);}
 "default" {return Parser::make_DEFAULT(loc_);}
 
+"class" {return Parser::make_CLASS(loc_);}
+"public" {return Parser::make_PUBLIC(loc_);}
+"protected" {return Parser::make_PROTECTED(loc_);}
+"private" {return Parser::make_PRIVATE(loc_);}
+"enum" {return Parser::make_ENUM(loc_);}
+"constructor" {return Parser::make_CONSTRUCTOR(loc_);}
+"destructor" {return Parser::make_DESTRUCTOR(loc_);}
+"default" {return Parser::make_DEFAULT(loc_);}
+
 "define" {return Parser::make_DEFINE(loc_);}
 
 "if" {return Parser::make_IF(loc_);}

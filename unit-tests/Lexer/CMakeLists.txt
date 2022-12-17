@@ -14,3 +14,6 @@ link_unit_tests(TestLexPunctuators)
 
 create_unit_test(TestLexOperators TestLexOperators.cpp)
 link_unit_tests(TestLexOperators)
+
+create_unit_test(TestLexKeywords TestLexKeywords.cpp)
+link_unit_tests(TestLexKeywords)

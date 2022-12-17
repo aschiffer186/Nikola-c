@@ -791,7 +791,7 @@ namespace Nikola { namespace SyntaxAnalysis {
   "break", "return", "continue", "match", "when", "typeset", "template",
   "where", "type", "module", "namespace", "import", "from", "as", "with",
   "is", "sizeof", "typeof", "static_assert", "assert", "new", "dynamic",
-  "$accept", "nikola", YY_NULLPTR
+  "$accept", "nikola", "statements", "statement", "expression", YY_NULLPTR
     };
     return yy_sname[yysymbol];
   }
@@ -1060,62 +1060,62 @@ namespace Nikola { namespace SyntaxAnalysis {
   }
 
 
-  const signed char NikolaParser::yypact_ninf_ = -57;
+  const signed char NikolaParser::yypact_ninf_ = -16;
 
-  const signed char NikolaParser::yytable_ninf_ = -1;
+  const signed char NikolaParser::yytable_ninf_ = -7;
 
   const signed char
   NikolaParser::yypact_[] =
   {
-     -56,   -57,     1,   -57
+     -15,     1,   -16,   -15,   -13,   -16,   -16,   -16
   };
 
   const signed char
   NikolaParser::yydefact_[] =
   {
-       0,     2,     0,     1
+       4,     0,     2,     4,     0,     1,     3,     5
   };
 
   const signed char
   NikolaParser::yypgoto_[] =
   {
-     -57,   -57
+     -16,   -16,     0,   -16,   -16
   };
 
   const signed char
   NikolaParser::yydefgoto_[] =
   {
-       0,     2
+       0,     1,     2,     3,     4
   };
 
   const signed char
   NikolaParser::yytable_[] =
   {
-       1,     3
+      -6,     5,     7,     6
   };
 
   const signed char
   NikolaParser::yycheck_[] =
   {
-      56,     0
+      15,     0,    15,     3
   };
 
   const unsigned char
   NikolaParser::yystos_[] =
   {
-       0,    56,   157,     0
+       0,   157,   158,   159,   160,     0,   158,    15
   };
 
   const unsigned char
   NikolaParser::yyr1_[] =
   {
-       0,   156,   157
+       0,   156,   157,   158,   158,   159,   160
   };
 
   const signed char
   NikolaParser::yyr2_[] =
   {
-       0,     2,     1
+       0,     2,     1,     2,     0,     2,     0
   };
 
 
@@ -1125,7 +1125,7 @@ namespace Nikola { namespace SyntaxAnalysis {
   const signed char
   NikolaParser::yyrline_[] =
   {
-       0,    86,    86
+       0,    88,    88,    90,    91,    93,    94
   };
 
   void

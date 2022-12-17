@@ -800,7 +800,10 @@ namespace Nikola { namespace SyntaxAnalysis {
         S_NEW = 154,                             // "new"
         S_DYNAMIC = 155,                         // "dynamic"
         S_YYACCEPT = 156,                        // $accept
-        S_nikola = 157                           // nikola
+        S_nikola = 157,                          // nikola
+        S_statements = 158,                      // statements
+        S_statement = 159,                       // statement
+        S_expression = 160                       // expression
       };
     };
 
@@ -3762,9 +3765,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 1,     ///< Last index in yytable_.
-      yynnts_ = 2,  ///< Number of nonterminal symbols.
-      yyfinal_ = 3 ///< Termination state number.
+      yylast_ = 3,     ///< Last index in yytable_.
+      yynnts_ = 5,  ///< Number of nonterminal symbols.
+      yyfinal_ = 5 ///< Termination state number.
     };
 
 
@@ -3905,7 +3908,7 @@ switch (yykind)
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 3909 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 3912 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 
 

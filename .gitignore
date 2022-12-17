@@ -36,3 +36,7 @@
 
 # Other build files 
 build/*
+
+# For now 
+Standard/*
+Standardization/*

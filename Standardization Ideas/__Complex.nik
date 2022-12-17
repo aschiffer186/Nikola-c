@@ -1,0 +1,49 @@
+module Nik.Core;
+
+let class Complex : template<ArgType : RealNumber> = {
+    let private __re : ArgType;
+    let private __im : ArgType;
+
+    let public constructor(re : ConvertibleTo<ArgType>, im : ConvertibleTo<ArgType>)
+        => __re{re}, __im{im};
+    
+    let compeval pure real() = {
+        return __re;
+    }
+
+    let compeval pure imag() = {
+        return __imag;
+    }
+}
+
+let compeval pure re(z : template Complex) = {
+    return z.re();
+}
+
+let compeval pure imag(z : template Complex) = {
+    return z.imag();
+}
+
+export let compeval pure operator abs(z : template Complex) = {
+    return sqrt(z.real()*z.real() + z.imag()*z.imag());
+}
+
+export let compeval pure arg(z : template Complex) = {
+    return atan2(imag(z), real(z));
+}
+
+export let compeval pure conj(z : template Complex) = {
+    return new Complex{real(z), -imag(z)};
+}
+
+export let compeval pure operator+(lhs : Complex<ArgType1>, rhs : Complex<ArgType2>) : template<ArgType1 : type, ArgType2 : type> = {
+    return new Complex{real(lhs) + real(rhs), imag(lhs) + real(rhs)};
+}
+
+export let compeval pure operator+(lhs : Number, rhs : templateComplex, commutative_t) = {
+    return new Complex{lhs + real(rhs), imag(rhs)};
+}
+
+export let compeval pure operator-(lhs : Complex<ArgType1>, rhs : Complex<ArgType2) = {
+    return new Complex{real(lhs) - real(lhs), imag(lhs) - imag(rhs)};
+}

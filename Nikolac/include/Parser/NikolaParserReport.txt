@@ -12,7 +12,6 @@ Terminals unused in grammar
     ")"
     "{"
     "}"
-    ";"
     ":"
     "=>"
     "+"
@@ -53,6 +52,7 @@ Terminals unused in grammar
     ">"
     "=="
     "!="
+    "&"
     "|"
     "^^"
     "~"
@@ -158,7 +158,14 @@ Grammar
 
     0 $accept: nikola $end
 
-    1 nikola: "&"
+    1 nikola: statements
+
+    2 statements: statement statements
+    3           | ε
+
+    4 statement: expression ";"
+
+    5 expression: ε
 
 
 Terminals, with rules where they appear
@@ -177,7 +184,7 @@ Terminals, with rules where they appear
     ")" (267)
     "{" (268)
     "}" (269)
-    ";" (270)
+    ";" (270) 4
     ":" (271)
     "=>" (272)
     "+" (273)
@@ -218,7 +225,7 @@ Terminals, with rules where they appear
     ">" (308)
     "==" (309)
     "!=" (310)
-    "&" (311) 1
+    "&" (311)
     "|" (312)
     "^^" (313)
     "~" (314)
@@ -327,33 +334,79 @@ Nonterminals, with rules where they appear
     nikola (157)
         on left: 1
         on right: 0
+    statements (158)
+        on left: 2 3
+        on right: 1 2
+    statement (159)
+        on left: 4
+        on right: 2
+    expression (160)
+        on left: 5
+        on right: 4
 
 
 State 0
 
     0 $accept: • nikola $end
 
-    "&"  shift, and go to state 1
+    ";"       reduce using rule 5 (expression)
+    $default  reduce using rule 3 (statements)
 
-    nikola  go to state 2
+    nikola      go to state 1
+    statements  go to state 2
+    statement   go to state 3
+    expression  go to state 4
 
 
 State 1
 
-    1 nikola: "&" •
+    0 $accept: nikola • $end
 
-    $default  reduce using rule 1 (nikola)
+    $end  shift, and go to state 5
 
 
 State 2
 
-    0 $accept: nikola • $end
+    1 nikola: statements •
 
-    $end  shift, and go to state 3
+    $default  reduce using rule 1 (nikola)
 
 
 State 3
 
+    2 statements: statement • statements
+
+    ";"       reduce using rule 5 (expression)
+    $default  reduce using rule 3 (statements)
+
+    statements  go to state 6
+    statement   go to state 3
+    expression  go to state 4
+
+
+State 4
+
+    4 statement: expression • ";"
+
+    ";"  shift, and go to state 7
+
+
+State 5
+
     0 $accept: nikola $end •
 
     $default  accept
+
+
+State 6
+
+    2 statements: statement statements •
+
+    $default  reduce using rule 2 (statements)
+
+
+State 7
+
+    4 statement: expression ";" •
+
+    $default  reduce using rule 4 (statement)
