@@ -17,3 +17,6 @@ link_unit_tests(TestLexOperators)
 
 create_unit_test(TestLexKeywords TestLexKeywords.cpp)
 link_unit_tests(TestLexKeywords)
+
+create_unit_test(TestLexMultiTokens TestLexMultiTokens.cpp)
+link_unit_tests(TestLexMultiTokens)
