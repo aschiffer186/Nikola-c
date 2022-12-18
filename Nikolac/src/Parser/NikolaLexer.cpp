@@ -1850,16 +1850,14 @@ case YY_STATE_EOF(INITIAL):
 case 158:
 YY_RULE_SETUP
 #line 224 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaLexer.ll"
-{
-    throw 1;
-}
+{return Parser::make_YYerror(loc_);}
 	YY_BREAK
 case 159:
 YY_RULE_SETUP
-#line 228 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaLexer.ll"
+#line 226 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaLexer.ll"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1863 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaLexer.cpp"
+#line 1861 "/home/aschiffe/Dev/Nikola-c/Nikolac/src/Parser/NikolaLexer.cpp"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2975,7 +2973,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 228 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaLexer.ll"
+#line 226 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaLexer.ll"
 
 namespace Nikola::SyntaxAnalysis
 {

@@ -220,9 +220,7 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 
 <<EOF>> {return Parser::make_YYEOF(loc_);}
 
-. {
-    throw 1;
-}
+. {return Parser::make_YYerror(loc_);}
 
 %%
 namespace Nikola::SyntaxAnalysis

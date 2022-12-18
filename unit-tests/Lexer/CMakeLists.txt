@@ -20,3 +20,6 @@ link_unit_tests(TestLexKeywords)
 
 create_unit_test(TestLexMultiTokens TestLexMultiTokens.cpp)
 link_unit_tests(TestLexMultiTokens)
+
+create_unit_test(TestLexFiles TestLexFiles.cpp)
+link_unit_tests(TestLexFiles)
