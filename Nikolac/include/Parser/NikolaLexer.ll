@@ -45,7 +45,7 @@ space [ \t\r]
 %}
 \n+ loc_.lines(yyleng); loc_.step();
 {space}+ loc_.step();
-#[^\n]+\n loc_.step();
+#[^\n]* loc_.step();
 
 {integer_literal} {return Parser::make_INTEGER_LITERAL(yytext, loc_);}
 {real_literal} {return Parser::make_REAL_LITERAL(yytext, loc_);}

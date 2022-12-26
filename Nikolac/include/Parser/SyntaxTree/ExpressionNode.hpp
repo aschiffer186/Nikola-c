@@ -5,10 +5,7 @@
 
 namespace Nikola::SyntaxAnalysis
 {
-    struct ExpressionNode : public SyntaxNode
-    {
-
-    };
+    struct ExpressionNode : public SyntaxNode {};
 
     enum class BinaryOperator
     {
@@ -99,7 +96,7 @@ namespace Nikola::SyntaxAnalysis
     
     private:
         UnaryOperator operator_;
-        std::unique_ptr<ExpressionNode> operand;
+        std::unique_ptr<ExpressionNode> operand_;
     };
 
     struct FunctionArgument
@@ -118,8 +115,35 @@ namespace Nikola::SyntaxAnalysis
     struct NewExpressionNode : public ExpressionNode
     {
     private:
-        bool isHeap;
+        bool isHeap_;
         FunctionCallNode* function_;
+    };
+
+    enum class LiteralType
+    {
+        INTEGER,
+        REAL,
+        COMPLEX,
+        CHARACTER,
+        STRING
+    };
+
+    struct LiteralNode : public ExpressionNode 
+    {
+        LiteralNode(LiteralType type, std::string_view value);
+
+        SyntaxNodeType getNodeType() const override; 
+
+        std::vector<NodeView<SyntaxNode>> getChildren() const override; 
+
+        void accept(Visitor* visitor) override; 
+
+        std::string_view getValue() const;
+
+        LiteralType getType() const;
+    private:
+        LiteralType type_;
+        std::string value_;
     };
 } // namespace Nikola::SyntaxAnalysis
 

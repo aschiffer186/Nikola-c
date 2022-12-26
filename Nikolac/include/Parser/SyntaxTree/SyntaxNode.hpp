@@ -9,6 +9,9 @@ namespace Nikola::SyntaxAnalysis
 {
     enum class SyntaxNodeType
     {
+        BinaryExpression,
+        UnaryExpression,
+        Literal
     };
 
     struct Visitor;

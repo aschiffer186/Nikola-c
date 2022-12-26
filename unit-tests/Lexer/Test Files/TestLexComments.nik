@@ -1,1 +1,5 @@
 #This is a test
+let compeval pure foo(a : int16_t) => real = {
+    return a * 2.0; # Comment part 2
+}
+# Comment part 3
