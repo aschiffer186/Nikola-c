@@ -1,6 +1,7 @@
 #ifndef LEXER_TEST_UTILS_HPP
 #define LEXER_TEST_UTILS_HPP
 
+#include <fstream>
 #include <sstream>
 #include <string_view>
 
@@ -10,6 +11,19 @@
 #include "NikolaParser.hpp"
 
 using namespace Nikola::SyntaxAnalysis;
+
+inline location makeLocation(int startLine, int startCol, int endLine, int endCol)
+{
+    position start;
+    start.column = startCol;
+    start.line = startLine;
+    
+    position end;
+    end.column = endCol;
+    end.line = endLine;
+
+    return location{start, end};
+}
 
 inline void runLexerTest(const std::string& testStr, NikolaParser::symbol_kind_type expectedSymbolKind)
 {
@@ -32,6 +46,27 @@ inline void runLexerTest(const std::string& testStr,
     const std::vector<NikolaParser::symbol_type>& expectedTokens)
 {
     std::stringstream testStream{testStr};
+    NikolaLexer lexer{testStream};
+
+    auto tokenVec = std::vector<NikolaParser::symbol_type>{};
+    while (true)
+    {
+        auto token = lexer.lex();
+        tokenVec.push_back(token);
+        if (token.kind() == NikolaParser::symbol_kind_type::S_YYEOF)
+            break;
+    }
+
+    ASSERT_EQ(tokenVec.size(), expectedTokens.size());
+    for(auto it1 = tokenVec.cbegin(), it2 = expectedTokens.cbegin(); it1 != tokenVec.end(); ++it1, ++it2)
+    {
+        compareTokens(*it1, *it2);
+    }
+}
+
+inline void runLexerTest(std::fstream& testStream, 
+    const std::vector<NikolaParser::symbol_type>& expectedTokens)
+{
     NikolaLexer lexer{testStream};
 
     auto tokenVec = std::vector<NikolaParser::symbol_type>{};

@@ -1,0 +1,3 @@
+let compeval pure foo(a : int16_t) => real = {
+    return a * 2.0;
+}

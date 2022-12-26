@@ -36,7 +36,7 @@
 //Identifiers
 %token <std::string> IDENTIFIER
 //Punctuators 
-%token LEFT_BRACKET "[" RIGHT_BRACKET "]" LEFT_PARENTHESIS "(" RIGHT_PARENTHESIS ")" LEFT_BRACE "{" RIGHT_BRACE "}" SEMI_COLON ";" COLON ":" RIGHT_ARROW "=>" ;
+%token LEFT_BRACKET "[" RIGHT_BRACKET "]" LEFT_PARENTHESIS "(" RIGHT_PARENTHESIS ")" LEFT_BRACE "{" RIGHT_BRACE "}" SEMI_COLON ";" COLON ":" RIGHT_ARROW "=>" COMMA ",";
 // Arithemtic Operators 
 %token PLUS "+" MINUS "-" STAR "*" SLASH "/" DOUBLE_SLASH "//" CARET "^" PERCENT "%" ;
 %token PLUS_ASSIGN "+=" MINUS_ASSIGN "-=" STAR_ASSIGN "*=" SLASH_ASSIGN "/=" DOUBLE_SLASH_ASSIGN "//=" CARET_ASSIGN "^=" PERCENT_ASSIGN "%=" ;
@@ -83,6 +83,24 @@
 %token MODULE "module" NAMESPACE "namespace" IMPORT "import" FROM "from" AS "as" WITH "with" ;
 //Expressions 
 %token IS "is" SIZEOF "sizeof" TYPEOF "typeof" STATIC_ASSERT "static_assert" ASSERT "assert" NEW "new" DYNAMIC "dynamic" ;
+
+
+%left "is"
+%right "=" "<-" "+=" "-=" "*=" "/=" "//=" "^=" "%=" "+<=" "-<=" "*<=" "/<=" "//<=" "^<=" "%<=" "&=" "|=" "^^=" "<<=" ">>=" "&<=" "|<=" "^^<=" "<<<=" ">><=" "?" ":"
+%left "||"
+%left "&&"
+%left "|" "|<"
+%left "^^" "^^<"
+%left "&" "&<"
+%left "==" "!=" "in"
+%left "<" "<=" ">=" ">"
+%left "<=>"
+%left "<<" ">>" "<<<" ">><"
+%left "+" "-" "+<" "-<"
+%left "*" "/" "//" "%" "*<" "/<" "//<" "%<"
+%right "^" "^<"
+%right "~" "!" "++" "--" "~<"
+%left "."
 %%
 %start nikola;
 nikola: statements;
@@ -90,5 +108,122 @@ nikola: statements;
 statements: statement statements 
 | %empty; 
 
-statement: expression ";" ;
-expression: %empty ;
+
+statement: 
+    expression ";"
+    | assignment-statement
+    ;
+assignment-statement:
+    expression "=" expression ";"
+    | expression "<-" expression ";"
+    | expression "+=" expression ";"
+    | expression "-=" expression ";"
+    | expression "*=" expression ";"
+    | expression "/=" expression ";"
+    | expression "//=" expression ";"
+    | expression "^=" expression ";"
+    | expression "%=" expression ";"
+    | expression "+<=" expression ";"
+    | expression "-<=" expression ";"
+    | expression "*<=" expression ";"
+    | expression "/<=" expression ";"
+    | expression "//<=" expression ";"
+    | expression "^<=" expression ";"
+    | expression "%<=" expression ";"
+    | expression "&=" expression ";"
+    | expression "|=" expression ";"
+    | expression "^^=" expression ";"
+    | expression "~=" expression ";"
+    | expression "<<=" expression ";"
+    | expression ">>=" expression ";"
+    | expression "&<=" expression ";"
+    | expression "|<=" expression ";"
+    | expression "^^<=" expression ";"
+    | expression "~<=" expression ";"
+    | expression "<<<=" expression ";"
+    | expression ">><=" expression ";"
+    ;
+expression:
+    literal
+    | "(" expression ")"
+    | expression "+" expression 
+    | expression "-" expression
+    | expression "*" expression
+    | expression "/" expression
+    | expression "//" expression
+    | expression "%" expression
+    | expression "^" expression
+    | expression "+<" expression 
+    | expression "-<" expression 
+    | expression "*<" expression 
+    | expression "/<" expression 
+    | expression "//<" expression 
+    | expression "^<" expression 
+    | expression "%<" expression 
+    | expression "&&" expression 
+    | expression "||" expression 
+    | expression "<" expression 
+    | expression "<=" expression 
+    | expression "<=>" expression 
+    | expression ">=" expression 
+    | expression ">" expression 
+    | expression "==" expression 
+    | expression "!=" expression 
+    | "!" expression
+    | expression "&" expression 
+    | expression "|" expression
+    | expression "^^" expression 
+    | "~" expression 
+    | expression "<<" expression 
+    | expression ">>" expression 
+    | expression "&<" expression 
+    | expression "|<" expression
+    | expression "^^<" expression 
+    | expression "~<" expression 
+    | expression "<<<" expression 
+    | expression ">><" expression 
+    | expression "." expression
+    | "++" expression 
+    | "--" expression 
+    | expression "++"
+    | expression "--"
+    | "*" expression %prec "~"
+    | "&" expression %prec "~"
+    | "-" expression %prec "~"
+    | expression "?" expression ":"
+    | expression "is" expression
+    | expression "in" expression
+    // Function like operators 
+    | "typeof" "(" expression ")"
+    | "sizeof" "(" expression ")"
+    | "as" "(" expression ")"
+    | "static_assert" "(" expression ")"
+    | "pure" "(" expression ")"
+    | "nothrow" "(" expression ")"
+    //New expressions 
+    | "new" IDENTIFIER "{" "}"
+    | "new" "dynamic" IDENTIFIER "{" "}"
+    // Function call and array subscript 
+    | IDENTIFIER "(" function_argument_list ")"
+    | "(" expression ")" "(" function_argument_list ")"
+    | expression "." expression "(" function_argument_list ")"
+    ;
+literal: 
+    INTEGER_LITERAL
+    | REAL_LITERAL 
+    | COMPLEX_LITERAL
+    | STRING_LITERAL
+    | CHAR_LITERAL
+    | "true"
+    | "false"
+    | "nptr"
+    ;
+function_argument_list: function_argument_list0 
+| %empty 
+;
+function_argument_list0: function_argument "," function_argument_list0
+| function_argument
+;
+function_argument: expression 
+| IDENTIFIER "=" expression
+;

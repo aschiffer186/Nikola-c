@@ -37,12 +37,14 @@ based_integer_literal {digit}{1,2}\_{based_digit}+
 integer_literal {decimal_integer_literal}|{based_integer_literal}
 real_literal {digit}*\.{digit}+([eE][+-]?{digit}+)?
 complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_literal})[iIjJ]
+
+space [ \t\r]
 %%
 %{
     loc_.step();
 %}
 \n+ loc_.lines(yyleng); loc_.step();
-[[:space:]]+ loc_.step();
+{space}+ loc_.step();
 #[^\n]+\n loc_.step();
 
 {integer_literal} {return Parser::make_INTEGER_LITERAL(yytext, loc_);}
@@ -60,6 +62,7 @@ complex_literal ({decimal_integer_literal}|{based_integer_literal}_|{real_litera
 ";" {return Parser::make_SEMI_COLON(loc_);}
 ":" {return Parser::make_COLON(loc_);}
 "=>" {return Parser::make_RIGHT_ARROW(loc_);}
+"," {return Parser::make_COMMA(loc_);}
 
 "+" {return Parser::make_PLUS(loc_);}
 "-" {return Parser::make_MINUS(loc_);}

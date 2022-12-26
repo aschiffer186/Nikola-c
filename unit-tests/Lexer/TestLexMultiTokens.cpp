@@ -4,18 +4,7 @@
 
 using TokenType = NikolaParser::symbol_type;
 
-location makeLocation(int startLine, int startCol, int endLine, int endCol)
-{
-    position start;
-    start.column = startCol;
-    start.line = startLine;
-    
-    position end;
-    end.column = endCol;
-    end.line = endLine;
 
-    return location{start, end};
-}
 
 TEST(TestLexer, TestMultipleTokensNoWhitespace)
 {
