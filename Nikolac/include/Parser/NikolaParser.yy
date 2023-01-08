@@ -87,6 +87,7 @@
 
 %left "is"
 %right "=" "<-" "+=" "-=" "*=" "/=" "//=" "^=" "%=" "+<=" "-<=" "*<=" "/<=" "//<=" "^<=" "%<=" "&=" "|=" "^^=" "<<=" ">>=" "&<=" "|<=" "^^<=" "<<<=" ">><=" "?" ":"
+%left "..."
 %left "||"
 %left "&&"
 %left "|" "|<"
@@ -145,6 +146,7 @@ assignment-statement:
     ;
 expression:
     literal
+    | name
     | "(" expression ")"
     | expression "+" expression 
     | expression "-" expression
@@ -182,7 +184,7 @@ expression:
     | expression "~<" expression 
     | expression "<<<" expression 
     | expression ">><" expression 
-    | expression "." expression
+    | expression "." IDENTIFIER
     | "++" expression 
     | "--" expression 
     | expression "++"
@@ -193,20 +195,23 @@ expression:
     | expression "?" expression ":"
     | expression "is" expression
     | expression "in" expression
+    | expression "..."
     // Function like operators 
     | "typeof" "(" expression ")"
     | "sizeof" "(" expression ")"
-    | "as" "(" expression ")"
+    | "as" "<" name ">" "(" expression ")"
     | "static_assert" "(" expression ")"
     | "pure" "(" expression ")"
     | "nothrow" "(" expression ")"
     //New expressions 
-    | "new" IDENTIFIER "{" "}"
-    | "new" "dynamic" IDENTIFIER "{" "}"
+    | "new" name "{" function_argument_list "}"
+    | "new" "dynamic" name "{" function_argument_list "}"
     // Function call and array subscript 
-    | IDENTIFIER "(" function_argument_list ")"
+    | name "(" function_argument_list ")"
     | "(" expression ")" "(" function_argument_list ")"
-    | expression "." expression "(" function_argument_list ")"
+    | expression "." IDENTIFIER "(" function_argument_list ")"
+    | array_index
+    | array_index "(" function_argument_list ")"
     ;
 literal: 
     INTEGER_LITERAL
@@ -219,11 +224,34 @@ literal:
     | "nptr"
     ;
 function_argument_list: function_argument_list0 
-| %empty 
-;
+    | %empty 
+    ;
 function_argument_list0: function_argument "," function_argument_list0
-| function_argument
-;
+    | function_argument
+    ;
 function_argument: expression 
-| IDENTIFIER "=" expression
-;
+    | IDENTIFIER "=" expression
+    ;
+array_index:
+    name "[" array_slice_list "]"
+    | expression "." IDENTIFIER "[" array_slice_list "]"
+    | "(" expression ")" "[" array_slice_list "]"
+    ;
+array_slice_list: array_slice "," array_slice_list
+    | array_slice
+    ;
+array_slice: 
+    expression 
+    | expression ":"
+    | ":" expression 
+    | expression ":" expression ":" expression 
+    | expression ":" expression ":"
+    | ":" expression ":" expression
+    ;
+name: 
+    IDENTIFIER
+    | module_name 
+    ;
+module_name: IDENTIFIER "::" module_name
+    | IDENTIFIER "::" IDENTIFIER
+    ;

@@ -810,7 +810,12 @@ namespace Nikola { namespace SyntaxAnalysis {
         S_literal = 163,                         // literal
         S_function_argument_list = 164,          // function_argument_list
         S_function_argument_list0 = 165,         // function_argument_list0
-        S_function_argument = 166                // function_argument
+        S_function_argument = 166,               // function_argument
+        S_array_index = 167,                     // array_index
+        S_array_slice_list = 168,                // array_slice_list
+        S_array_slice = 169,                     // array_slice
+        S_name = 170,                            // name
+        S_module_name = 171                      // module_name
       };
     };
 
@@ -3483,7 +3488,7 @@ switch (yykind)
     void yy_lac_discard_ (const char* event);
 
     /// Stored state numbers (used for stacks).
-    typedef unsigned char state_type;
+    typedef short state_type;
 
     /// The arguments of the error message.
     int yy_syntax_error_arguments_ (const context& yyctx,
@@ -3529,12 +3534,12 @@ switch (yykind)
     static const short yypgoto_[];
 
     // YYDEFGOTO[NTERM-NUM].
-    static const signed char yydefgoto_[];
+    static const unsigned char yydefgoto_[];
 
     // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
     // positive, shift that token.  If negative, reduce the rule whose
     // number is the opposite.  If YYTABLE_NINF, syntax error.
-    static const unsigned char yytable_[];
+    static const short yytable_[];
 
     static const short yycheck_[];
 
@@ -3551,7 +3556,7 @@ switch (yykind)
 
 #if YYDEBUG
     // YYRLINE[YYN] -- Source line where rule number YYN was defined.
-    static const unsigned char yyrline_[];
+    static const short yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
     virtual void yy_reduce_print_ (int r) const;
     /// Print the state stack on the debug stream.
@@ -3787,9 +3792,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 3597,     ///< Last index in yytable_.
-      yynnts_ = 10,  ///< Number of nonterminal symbols.
-      yyfinal_ = 48 ///< Termination state number.
+      yylast_ = 3873,     ///< Last index in yytable_.
+      yynnts_ = 15,  ///< Number of nonterminal symbols.
+      yyfinal_ = 51 ///< Termination state number.
     };
 
 
@@ -3930,7 +3935,7 @@ switch (yykind)
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 3934 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 3939 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 
 

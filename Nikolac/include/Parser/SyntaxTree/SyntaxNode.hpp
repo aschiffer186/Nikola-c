@@ -11,6 +11,8 @@ namespace Nikola::SyntaxAnalysis
     {
         BinaryExpression,
         UnaryExpression,
+        FunctionCall,
+        NewExpression,
         Literal
     };
 

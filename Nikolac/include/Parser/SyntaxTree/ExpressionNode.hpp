@@ -5,7 +5,9 @@
 
 namespace Nikola::SyntaxAnalysis
 {
-    struct ExpressionNode : public SyntaxNode {};
+    struct ExpressionNode : public SyntaxNode {
+        virtual ~ExpressionNode() = default;
+    };
 
     enum class BinaryOperator
     {
@@ -107,6 +109,18 @@ namespace Nikola::SyntaxAnalysis
 
     struct FunctionCallNode : public ExpressionNode
     {
+    public:
+        FunctionCallNode(std::unique_ptr<ExpressionNode> caller, std::vector<FunctionArgument>&& functionArguments);
+
+        SyntaxNodeType getNodeType() const override; 
+
+        std::vector<NodeView<SyntaxNode>> getChildren() const override;
+
+        void accept(Visitor* visitor) override;
+
+        const ExpressionNode& getCaller() const;
+
+        const std::vector<FunctionArgument>& getArguments() const;
     private:
         std::unique_ptr<ExpressionNode> caller_;
         std::vector<FunctionArgument> functionArgs_;
@@ -114,9 +128,20 @@ namespace Nikola::SyntaxAnalysis
 
     struct NewExpressionNode : public ExpressionNode
     {
+        NewExpressionNode(bool isHeap, std::unique_ptr<FunctionCallNode> function);
+
+        SyntaxNodeType getNodeType() const override; 
+
+        std::vector<NodeView<SyntaxNode>> getChildren() const override;
+
+        void accept(Visitor* visitor) override;
+
+        bool isHeapAllocation() const;
+
+        const FunctionCallNode& initializationExpression() const;
     private:
         bool isHeap_;
-        FunctionCallNode* function_;
+        std::unique_ptr<FunctionCallNode> function_;
     };
 
     enum class LiteralType

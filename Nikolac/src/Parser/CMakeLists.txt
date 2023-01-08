@@ -8,6 +8,7 @@ FLEX_TARGET(NikolaLexer
 BISON_TARGET(NikolaParser 
     ${PARSER_INCLUDE_DIR}/NikolaParser.yy 
     ${CMAKE_CURRENT_SOURCE_DIR}/NikolaParser.cpp
+    COMPILE_FLAGS "-Wcex"
     DEFINES_FILE ${PARSER_INCLUDE_DIR}/NikolaParser.hpp
     VERBOSE ${PARSER_INCLUDE_DIR}/NikolaParserReport.txt
     )
