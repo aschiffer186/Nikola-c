@@ -7,7 +7,10 @@ namespace Nikola::SyntaxAnalysis
     struct UnaryExpressionNode;
     struct FunctionCallNode;
     struct NewExpressionNode;
-    struct LiteralNode;
+    struct UnitLiteralNode;
+    struct VectorLiteralNode;
+    struct MatrixLiteralNode;
+    struct SetBuilderLiteralNode;
 
     struct Visitor
     {
@@ -15,7 +18,10 @@ namespace Nikola::SyntaxAnalysis
         virtual void visit(UnaryExpressionNode& node) = 0;
         virtual void visit(FunctionCallNode& node) = 0;
         virtual void visit(NewExpressionNode& node) = 0;
-        virtual void visit(LiteralNode& node) = 0;
+        virtual void visit(UnitLiteralNode& node) = 0;
+        virtual void visit(VectorLiteralNode& node) = 0;
+        virtual void visit(MatrixLiteralNode& node) = 0;
+        virtual void visit(SetBuilderLiteralNode& node) = 0;
     };
 }
 

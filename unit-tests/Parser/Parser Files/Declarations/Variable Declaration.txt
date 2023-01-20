@@ -1,0 +1,9 @@
+# Different type definitions
+let i; # Type deduced 
+let i : int # Type specified
+let i : int const # Type specified; type const
+let i : int& # Type specified; view to type 
+let i : int const& # Type specified; view to const type 
+let i : & # Type deduced as view 
+let i : const # Type deduced as const type 
+let i : const& # Type deduced as const view

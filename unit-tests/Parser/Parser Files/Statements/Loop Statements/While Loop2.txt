@@ -1,0 +1,4 @@
+while(let i = foo(), i == 1)
+{
+    
+}

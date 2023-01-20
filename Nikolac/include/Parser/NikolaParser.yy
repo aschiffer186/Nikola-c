@@ -109,11 +109,21 @@ nikola: statements;
 statements: statement statements 
 | %empty; 
 
-
+//////Statements
 statement: 
     expression ";"
+    | compound-statement
     | assignment-statement
+    | match-statement
+    | conditional-statement
+    | loop-statement
+    | exception-statement
+    | jump-statement
     ;
+//// Compound Statements
+compound-statement: "{" statements "}" ;
+
+//// Assignment Statement
 assignment-statement:
     expression "=" expression ";"
     | expression "<-" expression ";"
@@ -144,11 +154,79 @@ assignment-statement:
     | expression "<<<=" expression ";"
     | expression ">><=" expression ";"
     ;
-expression:
-    literal
-    | name
-    | "(" expression ")"
-    | expression "+" expression 
+
+//// Match Statement
+match-statement:
+    "match" "(" IDENTIFIER ")" "{" match-arms "}" 
+    | "compeval" "match" "(" IDENTIFIER ")" "{" match-arms "}"
+    ;
+match-arms: match-arm match-arms
+    | match-arm 
+    ;
+match-arm: "when" expression "=>" compound-statement ;
+    | else-statement ;
+
+//// Conditional Statement
+conditional-statement: if-statement else-if-statements-opt else-statement-opt ;
+/// If Statement
+if-statement: 
+    "if" "(" expression ")" compound-statement 
+    | "compeval" "(" expression ")" compound-statement;
+/// Else-if Statement
+else-if-statements-opt: else-if-statement else-if-statements-opt 
+    | %empty 
+    ;
+else-if-statement: "else if" "(" expression ")" compound-statement;
+else-statement-opt: else-statement 
+    | %empty 
+    ;
+/// Else Statement
+else-statement: "else" compound-statement ;
+
+//// Loop Statement
+loop-statement: 
+    while-loop 
+    | do-while-loop
+    | for-loop
+    ;
+/// While Loop
+while-loop: "while" "(" expression ")" compound-statement ;
+/// Do-While Loop
+do-while-loop: "do" compound-statement "while" "(" expression ")"
+/// For-loop
+for-loop: 
+    "for" for-loop-sequence compound-statement ;
+    | "compeval" "for" for-loop-sequence compound-statement ;
+for-loop-sequence: "(" expression-opt ";" expression-opt ";" expression-opt ")" 
+expression-opt: expression 
+    | %empty 
+    ;
+
+//// Exception Statement
+exception-statement: try-statement catch-statements catch-all-statement-opt;
+/// Try Statement
+try-statement: "try" compound-statement ;
+/// Catch Statement
+catch-statements: catch-statements catch-statement
+    | catch-statement 
+    ;
+catch-statement: "catch" "(" expression ")" compound-statement ;
+catch-all-statement-opt: catch-all-statement 
+    | %empty 
+    ;
+catch-all-statement: "catch" "(" ")" compound-statement ;
+
+//// Jump Statement
+jump-statement:
+    "return" expression-opt ";"
+    | "break" ";"
+    | "continue" ";"
+    | "throw" expression-opt ";"
+    ;
+
+////// Expressions
+binary-expression:
+    expression "+" expression 
     | expression "-" expression
     | expression "*" expression
     | expression "/" expression
@@ -171,11 +249,9 @@ expression:
     | expression ">" expression 
     | expression "==" expression 
     | expression "!=" expression 
-    | "!" expression
     | expression "&" expression 
     | expression "|" expression
     | expression "^^" expression 
-    | "~" expression 
     | expression "<<" expression 
     | expression ">>" expression 
     | expression "&<" expression 
@@ -185,6 +261,12 @@ expression:
     | expression "<<<" expression 
     | expression ">><" expression 
     | expression "." IDENTIFIER
+    | expression "is" expression
+    | expression "in" expression
+    ;
+unary-expression:
+    "!" expression
+    | "~" expression 
     | "++" expression 
     | "--" expression 
     | expression "++"
@@ -192,10 +274,15 @@ expression:
     | "*" expression %prec "~"
     | "&" expression %prec "~"
     | "-" expression %prec "~"
-    | expression "?" expression ":"
-    | expression "is" expression
-    | expression "in" expression
     | expression "..."
+    ;
+expression:
+    literal
+    | name
+    | "(" expression ")"
+    | binary-expression
+    | unary-expression
+    | expression "?" expression ":"
     // Function like operators 
     | "typeof" "(" expression ")"
     | "sizeof" "(" expression ")"
@@ -213,6 +300,8 @@ expression:
     | array_index
     | array_index "(" function_argument_list ")"
     ;
+
+//// Literals
 literal: 
     INTEGER_LITERAL
     | REAL_LITERAL 
@@ -222,7 +311,27 @@ literal:
     | "true"
     | "false"
     | "nptr"
+    | vector-literal
+    | matrix-literal
+    | set-builder-literal
     ;
+vector-literal: "[" expression-list "]" ;
+expression-list: expression-list "," expression 
+    | expression 
+    ;
+/// Matrix Literal
+matrix-literal: "[" vector-literal vector-literal-list-opt "]" ;
+vector-literal-list: vector-literal-list "," vector-literal
+    | vector-literal 
+    ;
+vector-literal-list-opt: vector-literal-list
+    | %empty 
+    ;
+//Valid matrices: [[1, 2, 3], [4, 5, 6], [6, 7, 8]]
+/// Set Builder Notation
+set-builder-literal: "{" expression "|" expression-list "}" ;
+
+//// Function Calls
 function_argument_list: function_argument_list0 
     | %empty 
     ;
@@ -232,6 +341,8 @@ function_argument_list0: function_argument "," function_argument_list0
 function_argument: expression 
     | IDENTIFIER "=" expression
     ;
+
+//// Array Indexing
 array_index:
     name "[" array_slice_list "]"
     | expression "." IDENTIFIER "[" array_slice_list "]"
@@ -252,6 +363,8 @@ name:
     IDENTIFIER
     | module_name 
     ;
+
+////// Modules
 module_name: IDENTIFIER "::" module_name
     | IDENTIFIER "::" IDENTIFIER
     ;

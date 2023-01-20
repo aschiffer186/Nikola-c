@@ -1,0 +1,38 @@
+# Different return types 
+let foo(); # Deduced return type 
+let foo() -> int; # Single Return Type 
+let foo() -> (int, real); # Multiple return types 
+let foo() -> int... # Variadic return type 
+let foo() -> (int, int...) # Multiple return types with variadic return type 
+let foo() -> (int, ...) # Multiple return types with deduced return types
+
+# Different Parameters 
+let foo(a); # Single parameter; deduced type 
+let foo(a : int); # Single parameter; declared type
+let foo(a, b, c); # Multiple parameters, all deduced 
+let foo(a : int, b : real, c : char) # Multiple parameters, all specified 
+let foo(a, b : real, c) # Multiple parameters, some declared and some deduced 
+let foo(a, b, c : int...) # Multiple parameters with declared variadic parameter 
+let foo(a, b, c...) # Multiple parameters with deduced parameter type
+let foo(a) -> typeof(a) # Deduce from type of parameter
+
+# Different function modifiers 
+let compeval foo(a : int) -> int; # Compeval function 
+let pure foo(a : int) -> int; # Pure function 
+let const nothrow foo(a : int) -> int; # Const, nothrow function 
+let const foo(a : int) -> int; # Const function 
+let nothrow foo(a : int) -> int; # Nothrow function 
+let static foo(a : int) -> int; # Static function 
+let static compeval(a : int) -> int; # Static compeval function 
+let static pure(a : int) -> int; # Static pure function 
+let static nothrow(a : int) -> int; # Static nothrow function 
+let virtual pure foo(a : int) -> int; # Virtual function
+
+# Operator overloads
+let operator+(a, b) -> int; 
+let operator abs(b) -> int;
+
+# Function definitions 
+let foo(a, b, c) -> (int, int, int) = {}
+let foo(a, b, c) -> (int, int, int) = default;
+let foo(a, b, c) -> (int, int, int) = delete;

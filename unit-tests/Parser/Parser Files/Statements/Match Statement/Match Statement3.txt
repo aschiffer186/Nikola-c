@@ -1,0 +1,6 @@
+match(value)
+{
+    when 5 <= value < 12 => {}
+    when 6 || a || b => {}
+    when condition(value, 6) > 75 => {}
+}

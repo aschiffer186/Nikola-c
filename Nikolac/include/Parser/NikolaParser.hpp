@@ -805,17 +805,48 @@ namespace Nikola { namespace SyntaxAnalysis {
         S_nikola = 158,                          // nikola
         S_statements = 159,                      // statements
         S_statement = 160,                       // statement
-        S_161_assignment_statement = 161,        // assignment-statement
-        S_expression = 162,                      // expression
-        S_literal = 163,                         // literal
-        S_function_argument_list = 164,          // function_argument_list
-        S_function_argument_list0 = 165,         // function_argument_list0
-        S_function_argument = 166,               // function_argument
-        S_array_index = 167,                     // array_index
-        S_array_slice_list = 168,                // array_slice_list
-        S_array_slice = 169,                     // array_slice
-        S_name = 170,                            // name
-        S_module_name = 171                      // module_name
+        S_161_compound_statement = 161,          // compound-statement
+        S_162_assignment_statement = 162,        // assignment-statement
+        S_163_match_statement = 163,             // match-statement
+        S_164_match_arms = 164,                  // match-arms
+        S_165_match_arm = 165,                   // match-arm
+        S_166_conditional_statement = 166,       // conditional-statement
+        S_167_if_statement = 167,                // if-statement
+        S_168_else_if_statements_opt = 168,      // else-if-statements-opt
+        S_169_else_if_statement = 169,           // else-if-statement
+        S_170_else_statement_opt = 170,          // else-statement-opt
+        S_171_else_statement = 171,              // else-statement
+        S_172_loop_statement = 172,              // loop-statement
+        S_173_while_loop = 173,                  // while-loop
+        S_174_do_while_loop = 174,               // do-while-loop
+        S_175_for_loop = 175,                    // for-loop
+        S_176_for_loop_sequence = 176,           // for-loop-sequence
+        S_177_expression_opt = 177,              // expression-opt
+        S_178_exception_statement = 178,         // exception-statement
+        S_179_try_statement = 179,               // try-statement
+        S_180_catch_statements = 180,            // catch-statements
+        S_181_catch_statement = 181,             // catch-statement
+        S_182_catch_all_statement_opt = 182,     // catch-all-statement-opt
+        S_183_catch_all_statement = 183,         // catch-all-statement
+        S_184_jump_statement = 184,              // jump-statement
+        S_185_binary_expression = 185,           // binary-expression
+        S_186_unary_expression = 186,            // unary-expression
+        S_expression = 187,                      // expression
+        S_literal = 188,                         // literal
+        S_189_vector_literal = 189,              // vector-literal
+        S_190_expression_list = 190,             // expression-list
+        S_191_matrix_literal = 191,              // matrix-literal
+        S_192_vector_literal_list = 192,         // vector-literal-list
+        S_193_vector_literal_list_opt = 193,     // vector-literal-list-opt
+        S_194_set_builder_literal = 194,         // set-builder-literal
+        S_function_argument_list = 195,          // function_argument_list
+        S_function_argument_list0 = 196,         // function_argument_list0
+        S_function_argument = 197,               // function_argument
+        S_array_index = 198,                     // array_index
+        S_array_slice_list = 199,                // array_slice_list
+        S_array_slice = 200,                     // array_slice
+        S_name = 201,                            // name
+        S_module_name = 202                      // module_name
       };
     };
 
@@ -3511,7 +3542,7 @@ switch (yykind)
     static bool yy_table_value_is_error_ (int yyvalue) YY_NOEXCEPT;
 
     static const short yypact_ninf_;
-    static const signed char yytable_ninf_;
+    static const short yytable_ninf_;
 
     /// Convert a scanner token kind \a t to a symbol kind.
     /// In theory \a t should be a token_kind_type, but character literals
@@ -3528,13 +3559,13 @@ switch (yykind)
     // YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
     // Performed when YYTABLE does not specify something else to do.  Zero
     // means the default is an error.
-    static const signed char yydefact_[];
+    static const unsigned char yydefact_[];
 
     // YYPGOTO[NTERM-NUM].
     static const short yypgoto_[];
 
     // YYDEFGOTO[NTERM-NUM].
-    static const unsigned char yydefgoto_[];
+    static const short yydefgoto_[];
 
     // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
     // positive, shift that token.  If negative, reduce the rule whose
@@ -3792,9 +3823,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 3873,     ///< Last index in yytable_.
-      yynnts_ = 15,  ///< Number of nonterminal symbols.
-      yyfinal_ = 51 ///< Termination state number.
+      yylast_ = 4959,     ///< Last index in yytable_.
+      yynnts_ = 46,  ///< Number of nonterminal symbols.
+      yyfinal_ = 102 ///< Termination state number.
     };
 
 
@@ -3935,7 +3966,7 @@ switch (yykind)
 
 #line 7 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.yy"
 } } // Nikola::SyntaxAnalysis
-#line 3939 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
+#line 3970 "/home/aschiffe/Dev/Nikola-c/Nikolac/include/Parser/NikolaParser.hpp"
 
 
 

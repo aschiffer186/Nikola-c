@@ -1,0 +1,6 @@
+match(enumValue)
+{
+    when EnumName::Value1 => {}
+    when EnumName::Value2 => {}
+    else {}
+}

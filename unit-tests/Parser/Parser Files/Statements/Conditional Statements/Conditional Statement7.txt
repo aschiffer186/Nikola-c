@@ -1,0 +1,12 @@
+if(let i = foo(), i == 1)
+{
+
+}
+else if(i == 2)
+{
+
+}
+else 
+{
+
+}

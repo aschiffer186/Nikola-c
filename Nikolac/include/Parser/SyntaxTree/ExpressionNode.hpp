@@ -153,9 +153,9 @@ namespace Nikola::SyntaxAnalysis
         STRING
     };
 
-    struct LiteralNode : public ExpressionNode 
+    struct UnitLiteralNode : public ExpressionNode 
     {
-        LiteralNode(LiteralType type, std::string_view value);
+        UnitLiteralNode(LiteralType type, std::string_view value);
 
         SyntaxNodeType getNodeType() const override; 
 
@@ -170,6 +170,47 @@ namespace Nikola::SyntaxAnalysis
         LiteralType type_;
         std::string value_;
     };
+
+    struct VectorLiteralNode : public ExpressionNode 
+    {
+    public:
+        SyntaxNodeType getNodeType() const override;
+
+        std::vector<NodeView<SyntaxNode>> getChildren() const override;
+
+        void accept(Visitor* visitor) override;
+
+    private:
+        std::vector<std::unique_ptr<ExpressionNode>> elements_;
+    };
+
+    struct MatrixLiteralNode : public ExpressionNode
+    {
+    public:
+        SyntaxNodeType getNodeType() const override;
+
+        std::vector<NodeView<SyntaxNode>> getChildren() const override;
+
+        void accept(Visitor* visitor) override;
+
+    private:
+        std::vector<std::unique_ptr<VectorLiteralNode>> elements_;
+    };
+
+    struct SetBuilderNotation : public ExpressionNode 
+    {
+    public:
+        SyntaxNodeType getNodeType() const override;
+
+        std::vector<NodeView<SyntaxNode>> getChildren() const override;
+
+        void accept(Visitor* visitor) override;
+
+    private: 
+        std::unique_ptr<ExpressionNode> iterator_;
+        std::unique_ptr<ExpressionNode> constraint_;
+    };
+
 } // namespace Nikola::SyntaxAnalysis
 
 
